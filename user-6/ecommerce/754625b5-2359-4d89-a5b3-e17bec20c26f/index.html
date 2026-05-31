@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>VELVET — Premium Fashion Store</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;1,300&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{--purple:#9b59b6;--purple2:#8e44ad;--dark-purple:#6c3483;--dark:#0d0a12;--panel:#120e1a;--cream:#f0ebf8;--muted:rgba(240,235,248,0.5);}
+html{scroll-behavior:smooth;}
+body{background:var(--dark);color:var(--cream);font-family:'Inter',sans-serif;overflow-x:hidden;}
+::-webkit-scrollbar{width:3px;}
+::-webkit-scrollbar-thumb{background:var(--purple);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes slideRight{from{opacity:0;transform:translateX(-24px)}to{opacity:1;transform:translateX(0)}}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.5}}
+@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+.announcement{background:linear-gradient(135deg,var(--dark-purple),var(--purple));padding:10px;text-align:center;font-size:11px;letter-spacing:3px;color:rgba(255,255,255,0.85);text-transform:uppercase;font-family:'Inter',sans-serif;}
+.announcement span{color:#f8c8ff;}
+.nav{position:sticky;top:0;z-index:1000;background:rgba(13,10,18,0.98);backdrop-filter:blur(20px);border-bottom:1px solid rgba(155,89,182,0.15);padding:16px 60px;display:flex;align-items:center;justify-content:space-between;}
+.nav-logo{font-size:26px;font-weight:100;letter-spacing:10px;color:var(--cream);text-transform:uppercase;}
+.nav-logo span{color:var(--purple);}
+.nav-cats{display:flex;gap:32px;}
+.nav-cats a{font-size:11px;letter-spacing:2px;color:var(--muted);text-decoration:none;text-transform:uppercase;transition:color 0.2s;}
+.nav-cats a:hover{color:var(--cream);}
+.nav-icons{display:flex;gap:20px;align-items:center;}
+.nav-icon-btn{background:none;border:none;cursor:pointer;color:var(--muted);font-size:16px;transition:color 0.2s;position:relative;}
+.nav-icon-btn:hover{color:var(--cream);}
+.cart-count{position:absolute;top:-8px;right:-8px;width:18px;height:18px;border-radius:50%;background:var(--purple);font-size:9px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:600;}
+.hero{display:grid;grid-template-columns:1fr 1fr;min-height:90vh;}
+.hero-left{background:var(--panel);padding:80px 60px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;}
+.hero-left-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 30% 70%,rgba(155,89,182,0.08),transparent);}
+.hero-eyebrow{font-size:10px;letter-spacing:5px;color:var(--purple);text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:14px;animation:fadeUp 0.8s ease 0.2s both;}
+.hero-eyebrow::before{content:'';width:30px;height:1px;background:var(--purple);}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(44px,7vw,88px);font-weight:300;line-height:0.95;color:var(--cream);margin-bottom:24px;animation:fadeUp 0.8s ease 0.4s both;}
+.hero-title em{font-style:italic;color:var(--purple);}
+.hero-desc{font-size:13px;color:var(--muted);line-height:1.8;max-width:380px;margin-bottom:40px;animation:fadeUp 0.8s ease 0.6s both;}
+.hero-btns{display:flex;gap:14px;animation:fadeUp 0.8s ease 0.8s both;}
+.btn-purple{background:var(--purple);color:#fff;border:none;padding:16px 40px;font-size:12px;letter-spacing:3px;text-transform:uppercase;cursor:pointer;transition:all 0.3s;font-family:'Inter',sans-serif;}
+.btn-purple:hover{background:var(--purple2);transform:translateY(-2px);}
+.btn-ghost{background:transparent;color:var(--cream);border:1px solid rgba(240,235,248,0.25);padding:16px 40px;font-size:12px;letter-spacing:3px;text-transform:uppercase;cursor:pointer;font-family:'Inter',sans-serif;transition:all 0.3s;}
+.btn-ghost:hover{border-color:var(--purple);}
+.hero-right{position:relative;overflow:hidden;}
+.hero-img{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1483985988355-763728e1935b?w=1200&q=90');background-size:cover;background-position:center top;transition:transform 10s ease;}
+.hero-right:hover .hero-img{transform:scale(1.05);}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(18,14,26,0.4),transparent);}
+.hero-badge{position:absolute;bottom:40px;right:40px;background:var(--purple);color:#fff;padding:16px 20px;text-align:center;}
+.hero-badge-num{font-size:28px;font-weight:300;display:block;}
+.hero-badge-label{font-size:9px;letter-spacing:3px;text-transform:uppercase;}
+.marquee{overflow:hidden;border-top:1px solid rgba(155,89,182,0.1);border-bottom:1px solid rgba(155,89,182,0.1);padding:12px 0;background:var(--panel);}
+.marquee-inner{display:inline-flex;white-space:nowrap;animation:marquee 20s linear infinite;}
+.mq-item{font-size:11px;color:var(--muted);padding:0 28px;letter-spacing:2px;text-transform:uppercase;}
+.mq-item span{color:var(--purple);}
+.categories{padding:80px 60px;background:var(--dark);}
+.sec-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:48px;}
+.sec-eyebrow{font-size:10px;letter-spacing:4px;color:var(--purple);text-transform:uppercase;margin-bottom:8px;}
+.sec-title{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,48px);font-weight:300;color:var(--cream);}
+.sec-title em{font-style:italic;color:var(--purple);}
+.view-all{font-size:11px;letter-spacing:2px;color:var(--purple);text-decoration:none;text-transform:uppercase;border-bottom:1px solid var(--purple);padding-bottom:2px;transition:opacity 0.2s;}
+.view-all:hover{opacity:0.7;}
+.cat-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;}
+.cat-card{position:relative;overflow:hidden;cursor:pointer;}
+.cat-card:first-child{grid-column:span 2;grid-row:span 2;}
+.cat-img{width:100%;height:180px;object-fit:cover;display:block;filter:brightness(0.7);transition:transform 0.5s,filter 0.4s;}
+.cat-card:first-child .cat-img{height:372px;}
+.cat-card:hover .cat-img{transform:scale(1.06);filter:brightness(0.55);}
+.cat-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(13,10,18,0.8) 0%,transparent 60%);}
+.cat-info{position:absolute;bottom:0;left:0;right:0;padding:20px;}
+.cat-name{font-size:14px;letter-spacing:3px;color:var(--cream);text-transform:uppercase;margin-bottom:4px;}
+.cat-count{font-size:10px;color:var(--muted);letter-spacing:1px;}
+.products{padding:80px 60px;background:var(--panel);}
+.filter-bar{display:flex;gap:12px;margin-bottom:48px;flex-wrap:wrap;}
+.filter-btn{font-size:11px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;border:1px solid rgba(155,89,182,0.2);padding:8px 20px;cursor:pointer;transition:all 0.2s;background:transparent;}
+.filter-btn.active,.filter-btn:hover{border-color:var(--purple);color:var(--cream);background:rgba(155,89,182,0.1);}
+.prod-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+.prod-card{position:relative;cursor:pointer;group:true;}
+.prod-img-wrap{position:relative;overflow:hidden;margin-bottom:14px;}
+.prod-img{width:100%;height:360px;object-fit:cover;display:block;filter:brightness(0.9);transition:transform 0.5s,filter 0.4s;}
+.prod-card:hover .prod-img{transform:scale(1.04);filter:brightness(0.75);}
+.prod-actions{position:absolute;bottom:16px;left:16px;right:16px;display:flex;gap:8px;transform:translateY(20px);opacity:0;transition:all 0.3s;}
+.prod-card:hover .prod-actions{transform:translateY(0);opacity:1;}
+.prod-action-btn{flex:1;background:rgba(13,10,18,0.9);color:var(--cream);border:1px solid rgba(155,89,182,0.3);padding:10px;font-size:11px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;font-family:'Inter',sans-serif;transition:all 0.2s;}
+.prod-action-btn:hover{background:var(--purple);}
+.prod-wish{width:40px;background:rgba(13,10,18,0.9);border:1px solid rgba(155,89,182,0.3);color:var(--muted);cursor:pointer;font-size:14px;transition:all 0.2s;}
+.prod-wish:hover{color:var(--purple);border-color:var(--purple);}
+.prod-badge{position:absolute;top:12px;left:12px;font-size:9px;font-weight:600;padding:4px 10px;letter-spacing:1px;text-transform:uppercase;}
+.badge-new{background:var(--purple);color:#fff;}
+.badge-sale{background:#e74c3c;color:#fff;}
+.prod-brand{font-size:10px;letter-spacing:2px;color:var(--purple);text-transform:uppercase;margin-bottom:4px;}
+.prod-name{font-family:'Playfair Display',serif;font-size:18px;font-weight:300;color:var(--cream);margin-bottom:8px;}
+.prod-prices{display:flex;align-items:center;gap:10px;}
+.prod-price{font-size:15px;font-weight:500;color:var(--cream);}
+.prod-old-price{font-size:13px;color:var(--muted);text-decoration:line-through;}
+.prod-discount{font-size:11px;color:#27ae60;font-weight:600;}
+.prod-stars{font-size:11px;color:var(--purple);margin-top:6px;letter-spacing:1px;}
+.featured{padding:80px 60px;background:var(--dark);display:grid;grid-template-columns:1fr 1fr;gap:0;min-height:500px;}
+.feat-img{position:relative;overflow:hidden;}
+.feat-img img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(0.75);}
+.feat-content{background:var(--panel);padding:80px 60px;display:flex;flex-direction:column;justify-content:center;}
+.feat-eyebrow{font-size:10px;letter-spacing:4px;color:var(--purple);text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:12px;}
+.feat-eyebrow::before{content:'';width:30px;height:1px;background:var(--purple);}
+.feat-title{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,52px);font-weight:300;color:var(--cream);line-height:1.1;margin-bottom:20px;}
+.feat-title em{font-style:italic;color:var(--purple);}
+.feat-desc{font-size:13px;color:var(--muted);line-height:2;margin-bottom:32px;}
+.newsletter{padding:80px 60px;background:linear-gradient(135deg,var(--dark-purple),var(--purple));text-align:center;}
+.nl-title{font-family:'Playfair Display',serif;font-size:clamp(28px,5vw,52px);font-weight:300;color:#fff;margin-bottom:12px;}
+.nl-sub{font-size:12px;color:rgba(255,255,255,0.6);letter-spacing:2px;margin-bottom:40px;}
+.nl-form{display:flex;max-width:480px;margin:0 auto;gap:0;}
+.nl-input{flex:1;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:14px 20px;font-size:13px;font-family:'Inter',sans-serif;outline:none;}
+.nl-input::placeholder{color:rgba(255,255,255,0.4);}
+.nl-btn{background:#fff;color:var(--dark-purple);border:none;padding:14px 28px;font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;cursor:pointer;font-family:'Inter',sans-serif;}
+footer{background:#060310;border-top:1px solid rgba(155,89,182,0.1);padding:60px;display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px;}
+.foot-logo{font-size:22px;font-weight:100;letter-spacing:8px;color:var(--cream);margin-bottom:12px;}
+.foot-logo span{color:var(--purple);}
+.foot-tagline{font-size:11px;color:var(--muted);line-height:1.8;}
+.foot-col-title{font-size:9px;letter-spacing:3px;color:rgba(155,89,182,0.6);text-transform:uppercase;margin-bottom:20px;}
+.foot-col-links{display:flex;flex-direction:column;gap:12px;}
+.foot-col-links a{font-size:12px;color:var(--muted);text-decoration:none;transition:color 0.2s;}
+.foot-col-links a:hover{color:var(--cream);}
+.foot-bottom{background:#030108;padding:20px 60px;display:flex;justify-content:space-between;border-top:1px solid rgba(155,89,182,0.06);}
+.foot-copy{font-size:10px;color:rgba(240,235,248,0.2);letter-spacing:1px;}
+@media(max-width:1024px){.hero{grid-template-columns:1fr;}.hero-right{height:60vh;}.cat-grid{grid-template-columns:repeat(3,1fr);}.prod-grid{grid-template-columns:repeat(2,1fr);}.featured{grid-template-columns:1fr;}.categories,.products,.featured,.newsletter{padding:60px 24px;}footer{grid-template-columns:1fr 1fr;padding:40px 24px;}}
+@media(max-width:600px){.nav{padding:14px 20px;}.cat-grid{grid-template-columns:repeat(2,1fr);}.cat-card:first-child{grid-column:span 2;}.prod-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<div class="announcement">✦ FREE SHIPPING ABOVE ₹2,999 &nbsp;·&nbsp; <span>USE VELVET20</span> FOR 20% OFF ✦</div>
+<nav class="nav">
+  <div class="nav-logo">VELVET<span>.</span></div>
+  <div class="nav-cats">
+    <a href="#">New In</a><a href="#">Dresses</a><a href="#">Bags</a><a href="#">Shoes</a><a href="#">Jewellery</a><a href="#">Sale</a>
+  </div>
+  <div class="nav-icons">
+    <button class="nav-icon-btn">♡</button>
+    <button class="nav-icon-btn">🔍</button>
+    <button class="nav-icon-btn" style="position:relative">🛍<div class="cart-count">3</div></button>
+  </div>
+</nav>
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-left-bg"></div>
+    <div class="hero-eyebrow">New Season · SS 2024</div>
+    <h1 class="hero-title">Dress to<br/><em>Obsess</em></h1>
+    <p class="hero-desc">Curated luxury fashion from the world's most coveted designers. Delivered to your door in 48 hours.</p>
+    <div class="hero-btns"><button class="btn-purple">Shop New In</button><button class="btn-ghost">View Lookbook</button></div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-img"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-badge"><span class="hero-badge-num">200+</span><span class="hero-badge-label">New Arrivals</span></div>
+  </div>
+</section>
+<div class="marquee">
+  <div class="marquee-inner">
+    <span class="mq-item">Free Returns <span>·</span></span><span class="mq-item">Authenticity Guaranteed <span>·</span></span><span class="mq-item">48-Hour Delivery <span>·</span></span><span class="mq-item">COD Available <span>·</span></span><span class="mq-item">Secure Payment <span>·</span></span><span class="mq-item">EMI Options <span>·</span></span>
+    <span class="mq-item">Free Returns <span>·</span></span><span class="mq-item">Authenticity Guaranteed <span>·</span></span><span class="mq-item">48-Hour Delivery <span>·</span></span><span class="mq-item">COD Available <span>·</span></span>
+  </div>
+</div>
+<section class="categories">
+  <div class="sec-header">
+    <div><div class="sec-eyebrow">Browse By</div><h2 class="sec-title">Shop <em>Categories</em></h2></div>
+    <a href="#" class="view-all">View All →</a>
+  </div>
+  <div class="cat-grid">
+    <div class="cat-card"><img class="cat-img" src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=800&q=85" alt="Dresses"/><div class="cat-overlay"></div><div class="cat-info"><div class="cat-name">Dresses</div><div class="cat-count">248 Items</div></div></div>
+    <div class="cat-card"><img class="cat-img" src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=400&q=85" alt="Bags"/><div class="cat-overlay"></div><div class="cat-info"><div class="cat-name">Bags</div><div class="cat-count">124 Items</div></div></div>
+    <div class="cat-card"><img class="cat-img" src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&q=85" alt="Shoes"/><div class="cat-overlay"></div><div class="cat-info"><div class="cat-name">Shoes</div><div class="cat-count">186 Items</div></div></div>
+    <div class="cat-card"><img class="cat-img" src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=400&q=85" alt="Jackets"/><div class="cat-overlay"></div><div class="cat-info"><div class="cat-name">Jackets</div><div class="cat-count">92 Items</div></div></div>
+    <div class="cat-card"><img class="cat-img" src="https://images.unsplash.com/photo-1601924994987-69e26d50dc26?w=400&q=85" alt="Jewellery"/><div class="cat-overlay"></div><div class="cat-info"><div class="cat-name">Jewellery</div><div class="cat-count">320 Items</div></div></div>
+  </div>
+</section>
+<section class="products">
+  <div class="sec-header"><div><div class="sec-eyebrow">Trending</div><h2 class="sec-title">New <em>Arrivals</em></h2></div><a href="#" class="view-all">View All →</a></div>
+  <div class="filter-bar">
+    <button class="filter-btn active">All</button><button class="filter-btn">Dresses</button><button class="filter-btn">Bags</button><button class="filter-btn">Shoes</button><button class="filter-btn">Sale</button>
+  </div>
+  <div class="prod-grid">
+    <div class="prod-card"><div class="prod-img-wrap"><img class="prod-img" src="https://images.unsplash.com/photo-1539008835657-9e8e9680c956?w=600&q=85" alt="Silk Wrap"/><div class="prod-badge badge-new">New</div><div class="prod-actions"><button class="prod-action-btn" onclick="alert('Added to cart!')">Add to Cart</button><button class="prod-wish">♡</button></div></div><div class="prod-brand">VELVET Exclusive</div><div class="prod-name">Silk Wrap Dress</div><div class="prod-prices"><span class="prod-price">₹8,499</span><span class="prod-old-price">₹12,000</span><span class="prod-discount">-29%</span></div><div class="prod-stars">★★★★★ (48)</div></div>
+    <div class="prod-card"><div class="prod-img-wrap"><img class="prod-img" src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=600&q=85" alt="Chain Bag"/><div class="prod-actions"><button class="prod-action-btn" onclick="alert('Added to cart!')">Add to Cart</button><button class="prod-wish">♡</button></div></div><div class="prod-brand">Luxury Collection</div><div class="prod-name">Mini Chain Bag</div><div class="prod-prices"><span class="prod-price">₹14,999</span></div><div class="prod-stars">★★★★☆ (31)</div></div>
+    <div class="prod-card"><div class="prod-img-wrap"><img class="prod-img" src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&q=85" alt="Block Heels"/><div class="prod-badge badge-sale">Sale</div><div class="prod-actions"><button class="prod-action-btn" onclick="alert('Added to cart!')">Add to Cart</button><button class="prod-wish">♡</button></div></div><div class="prod-brand">VELVET Footwear</div><div class="prod-name">Velvet Block Heels</div><div class="prod-prices"><span class="prod-price">₹5,999</span><span class="prod-old-price">₹9,000</span><span class="prod-discount">-33%</span></div><div class="prod-stars">★★★★★ (72)</div></div>
+    <div class="prod-card"><div class="prod-img-wrap"><img class="prod-img" src="https://images.unsplash.com/photo-1601924994987-69e26d50dc26?w=600&q=85" alt="Gold Cuffs"/><div class="prod-actions"><button class="prod-action-btn" onclick="alert('Added to cart!')">Add to Cart</button><button class="prod-wish">♡</button></div></div><div class="prod-brand">Fine Jewellery</div><div class="prod-name">Gold Cuff Set</div><div class="prod-prices"><span class="prod-price">₹3,299</span></div><div class="prod-stars">★★★★☆ (19)</div></div>
+  </div>
+</section>
+<section class="featured">
+  <div class="feat-img"><img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=900&q=90" alt="Editorial"/></div>
+  <div class="feat-content">
+    <div class="feat-eyebrow">Editorial</div>
+    <h2 class="feat-title">The <em>Velvet</em><br/>Edit: SS 2024</h2>
+    <p class="feat-desc">This season, we invite you to explore femininity through the lens of restraint and richness. Every piece selected with obsessive attention to craft.</p>
+    <button class="btn-purple">Explore the Edit</button>
+  </div>
+</section>
+<section class="newsletter">
+  <h2 class="nl-title">Join the Circle</h2>
+  <p class="nl-sub">Early access to drops, exclusive offers & style content</p>
+  <div class="nl-form"><input class="nl-input" type="email" placeholder="Your email address"/><button class="nl-btn">Subscribe</button></div>
+</section>
+<footer>
+  <div><div class="foot-logo">VELVET<span>.</span></div><div class="foot-tagline">Premium fashion, curated with obsessive care. Delivered to your world.</div></div>
+  <div><div class="foot-col-title">Shop</div><div class="foot-col-links"><a href="#">New In</a><a href="#">Dresses</a><a href="#">Bags</a><a href="#">Shoes</a><a href="#">Sale</a></div></div>
+  <div><div class="foot-col-title">Help</div><div class="foot-col-links"><a href="#">Sizing Guide</a><a href="#">Returns</a><a href="#">Track Order</a><a href="#">Contact</a></div></div>
+  <div><div class="foot-col-title">Company</div><div class="foot-col-links"><a href="#">About</a><a href="#">Press</a><a href="#">Sustainability</a><a href="#">Careers</a></div></div>
+</footer>
+<div class="foot-bottom"><div class="foot-copy">© 2024 VELVET. All rights reserved.</div><div class="foot-copy">Free returns · Authenticity guaranteed</div></div>
+<script>
+const obs=new IntersectionObserver(entries=>{entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>{e.target.style.animation='fadeUp 0.6s ease forwards';e.target.style.opacity='1';},i*80);}});},{threshold:0.1});
+document.querySelectorAll('.prod-card,.cat-card').forEach(el=>{el.style.opacity='0';obs.observe(el);});
+document.querySelectorAll('.filter-btn').forEach(btn=>{btn.addEventListener('click',()=>{document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');});});
+</script>
+</body></html>
