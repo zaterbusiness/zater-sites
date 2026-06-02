@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>ZATER — User Management</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0a0a0f;--surface:#12121a;--surface2:#1a1a26;--border:#ffffff12;--border2:#ffffff20;--primary:#7c5cfc;--primary-glow:#7c5cfc44;--accent:#00e5a0;--text:#f0f0ff;--muted:#888899;--danger:#ff4d6d;--success:#00e5a0;--font:system-ui,sans-serif;}
+body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;display:flex;align-items:center;justify-content:center;}
+.auth-wrap{width:100%;max-width:420px;padding:2rem;}
+.auth-bg{position:fixed;inset:0;background:radial-gradient(ellipse 80% 60% at 20% 40%,#7c5cfc18,transparent),radial-gradient(ellipse 60% 80% at 80% 80%,#00e5a018,transparent);pointer-events:none;z-index:0;}
+.auth-card{background:var(--surface);border:1px solid var(--border2);border-radius:20px;padding:2.5rem;position:relative;z-index:1;}
+.logo{font-size:2rem;font-weight:900;letter-spacing:-1px;margin-bottom:.25rem;color:var(--text);}
+.logo span{color:var(--primary);}
+.tagline{color:var(--muted);font-size:.85rem;margin-bottom:2rem;}
+.form-group{margin-bottom:1.1rem;}
+.form-label{display:block;font-size:.75rem;font-weight:600;color:var(--muted);margin-bottom:.4rem;text-transform:uppercase;letter-spacing:.06em;}
+.form-input{width:100%;background:var(--surface2);border:1px solid var(--border2);border-radius:10px;padding:.75rem 1rem;color:var(--text);font-size:.9rem;outline:none;}
+.form-input:focus{border-color:var(--primary);outline:2px solid var(--primary-glow);}
+.btn{width:100%;padding:.85rem;border-radius:10px;border:none;font-size:.95rem;font-weight:600;cursor:pointer;}
+.btn-primary{background:var(--primary);color:#fff;}
+.auth-switch{text-align:center;margin-top:1rem;font-size:.85rem;color:var(--muted);}
+.auth-switch a{color:var(--primary);cursor:pointer;}
+.demo-row{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-top:1rem;}
+.demo-btn{padding:.6rem;background:var(--surface2);border:1px solid var(--border2);border-radius:8px;font-size:.78rem;font-weight:600;cursor:pointer;color:var(--text);}
+/* DASHBOARD */
+.app{display:none;min-height:100vh;background:var(--bg);}
+.sidebar{position:fixed;top:0;left:0;width:220px;height:100vh;background:var(--surface);border-right:1px solid var(--border);padding:1.5rem;display:flex;flex-direction:column;}
+.sidebar-logo{font-size:1.3rem;font-weight:800;margin-bottom:2rem;color:var(--text);}
+.sidebar-logo span{color:var(--primary);}
+.nav-item{display:flex;align-items:center;gap:.75rem;padding:.65rem .75rem;border-radius:8px;cursor:pointer;font-size:.875rem;color:var(--muted);margin-bottom:2px;}
+.nav-item.active,.nav-item:hover{background:var(--primary-glow);color:var(--primary);}
+.main{margin-left:220px;padding:2rem;}
+.page-title{font-size:1.6rem;font-weight:700;margin-bottom:.25rem;}
+.page-sub{color:var(--muted);font-size:.875rem;margin-bottom:2rem;}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:2rem;}
+.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.25rem;}
+.stat-val{font-size:2rem;font-weight:700;margin-bottom:.25rem;}
+.stat-label{font-size:.78rem;color:var(--muted);}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.5rem;margin-bottom:1.5rem;}
+.card-title{font-size:.95rem;font-weight:600;margin-bottom:1.25rem;}
+table{width:100%;border-collapse:collapse;}
+th{text-align:left;padding:.65rem 1rem;font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;border-bottom:1px solid var(--border);}
+td{padding:.85rem 1rem;border-bottom:1px solid var(--border);font-size:.85rem;}
+.badge{display:inline-flex;padding:.2rem .65rem;border-radius:20px;font-size:.7rem;font-weight:600;}
+.badge-admin{background:#7c5cfc22;color:var(--primary);}
+.badge-user{background:#ffffff11;color:var(--muted);}
+.badge-active{background:#00e5a018;color:var(--accent);}
+</style>
+</head>
+<body>
+<div class="auth-bg"></div>
+
+<div id="loginPage" class="auth-wrap">
+  <div class="auth-card">
+    <div class="logo">ZA<span>T</span>ER</div>
+    <div class="tagline">User Management System</div>
+    <div class="form-group"><label class="form-label">Email</label><input id="lEmail" class="form-input" type="email" value="admin@zater.com"/></div>
+    <div class="form-group"><label class="form-label">Password</label><input id="lPass" class="form-input" type="password" value="admin123"/></div>
+    <button class="btn btn-primary" onclick="login()">Sign In</button>
+    <div class="auth-switch">No account? <a onclick="alert('Sign up demo')">Register</a></div>
+    <div class="demo-row">
+      <button class="demo-btn" onclick="ql('admin@zater.com','admin123')">🛡️ Admin Demo</button>
+      <button class="demo-btn" onclick="ql('user@zater.com','user123')">👤 User Demo</button>
+    </div>
+  </div>
+</div>
+
+<div id="appPage" class="app">
+  <div class="sidebar">
+    <div class="sidebar-logo">ZA<span>T</span>ER</div>
+    <div class="nav-item active">📊 Dashboard</div>
+    <div class="nav-item">👤 My Profile</div>
+    <div class="nav-item">👥 Manage Users</div>
+    <div class="nav-item">🛡️ Roles & Access</div>
+    <div style="flex:1"></div>
+    <div style="display:flex;align-items:center;gap:.75rem;padding:.75rem;background:var(--surface2);border-radius:10px;">
+      <div style="width:32px;height:32px;border-radius:50%;background:var(--primary-glow);border:1px solid var(--primary);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.8rem;color:var(--primary)" id="sidebarAv">A</div>
+      <div><div style="font-size:.85rem;font-weight:500" id="sidebarName">Admin</div><div style="font-size:.72rem;color:var(--muted)" id="sidebarRole">Administrator</div></div>
+    </div>
+    <button onclick="logout()" style="margin-top:.75rem;width:100%;padding:.6rem;background:transparent;border:1px solid var(--border);border-radius:8px;color:var(--muted);cursor:pointer;font-size:.85rem;">Sign Out</button>
+  </div>
+  <div class="main">
+    <div class="page-title">Dashboard</div>
+    <div class="page-sub" id="welcome">Welcome back!</div>
+    <div class="stats-grid">
+      <div class="stat-card"><div class="stat-val" id="st1">5</div><div class="stat-label">Total Users</div></div>
+      <div class="stat-card"><div class="stat-val" id="st2">4</div><div class="stat-label">Active</div></div>
+      <div class="stat-card"><div class="stat-val" id="st3">2</div><div class="stat-label">Admins</div></div>
+      <div class="stat-card"><div class="stat-val" id="st4">1</div><div class="stat-label">Inactive</div></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Recent Users</div>
+      <table><thead><tr><th>Name</th><th>Email</th><th>Role</th><th>Status</th></tr></thead>
+      <tbody id="usersTable"></tbody></table>
+    </div>
+  </div>
+</div>
+
+<script>
+const users=[
+  {name:'Admin User',email:'admin@zater.com',password:'admin123',role:'admin',status:'active'},
+  {name:'Priya Sharma',email:'user@zater.com',password:'user123',role:'user',status:'active'},
+  {name:'Ravi Kumar',email:'ravi@zater.com',password:'pass123',role:'user',status:'active'},
+  {name:'Sara Ali',email:'sara@zater.com',password:'pass123',role:'admin',status:'active'},
+  {name:'Dev Nair',email:'dev@zater.com',password:'pass123',role:'user',status:'inactive'},
+];
+let cu=null;
+function ql(e,p){document.getElementById('lEmail').value=e;document.getElementById('lPass').value=p;}
+function login(){
+  const e=document.getElementById('lEmail').value,p=document.getElementById('lPass').value;
+  const u=users.find(x=>x.email===e&&x.password===p);
+  if(!u){alert('Invalid credentials');return;}
+  cu=u;
+  document.getElementById('loginPage').style.display='none';
+  document.getElementById('appPage').style.display='block';
+  document.getElementById('sidebarAv').textContent=cu.name[0];
+  document.getElementById('sidebarName').textContent=cu.name;
+  document.getElementById('sidebarRole').textContent=cu.role==='admin'?'Administrator':'User';
+  document.getElementById('welcome').textContent='Welcome back, '+cu.name.split(' ')[0]+' 👋';
+  document.getElementById('usersTable').innerHTML=users.slice(0,4).map(u=>
+    '<tr><td>'+u.name+'</td><td style="color:var(--muted)">'+u.email+'</td><td><span class="badge badge-'+u.role+'">'+u.role+'</span></td><td><span class="badge badge-'+u.status+'">'+u.status+'</span></td></tr>'
+  ).join('');
+}
+function logout(){
+  document.getElementById('loginPage').style.display='flex';
+  document.getElementById('appPage').style.display='none';
+}
+document.getElementById('loginPage').style.display='flex';
+</script>
+</body>
+</html>
