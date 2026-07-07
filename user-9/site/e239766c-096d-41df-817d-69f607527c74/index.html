@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>ZATER — User Management</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0a0a0f;--surface:#12121a;--surface2:#1a1a26;--border:#ffffff12;--border2:#ffffff20;--primary:#7c5cfc;--primary-glow:#7c5cfc44;--accent:#00e5a0;--text:#f0f0ff;--muted:#888899;--danger:#ff4d6d;--success:#00e5a0;--font:system-ui,sans-serif;}
+body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;display:flex;align-items:center;justify-content:center;}
+.auth-wrap{width:100%;max-width:420px;padding:2rem;}
+.auth-bg{position:fixed;inset:0;background:radial-gradient(ellipse 80% 60% at 20% 40%,#7c5cfc18,transparent),radial-gradient(ellipse 60% 80% at 80% 80%,#00e5a018,transparent);pointer-events:none;z-index:0;}
+.auth-card{background:var(--surface);border:1px solid var(--border2);border-radius:20px;padding:2.5rem;position:relative;z-index:1;}
+.logo{font-size:2rem;font-weight:900;letter-spacing:-1px;margin-bottom:.25rem;color:var(--text);}
+.logo span{color:var(--primary);}
+.tagline{color:var(--muted);font-size:.85rem;margin-bottom:2rem;}
+.form-group{margin-bottom:1.1rem;}
+.form-label{display:block;font-size:.75rem;font-weight:600;color:var(--muted);margin-bottom:.4rem;text-transform:uppercase;letter-spacing:.06em;}
+.form-input{width:100%;background:var(--surface2);border:1px solid var(--border2);border-radius:10px;padding:.75rem 1rem;color:var(--text);font-size:.9rem;outline:none;}
+.form-input:focus{border-color:var(--primary);outline:2px solid var(--primary-glow);}
+.btn{width:100%;padding:.85rem;border-radius:10px;border:none;font-size:.95rem;font-weight:600;cursor:pointer;}
+.btn-primary{background:var(--primary);color:#fff;}
+.auth-switch{text-align:center;margin-top:1rem;font-size:.85rem;color:var(--muted);}
+.auth-switch a{color:var(--primary);cursor:pointer;}
+.demo-row{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-top:1rem;}
+.demo-btn{padding:.6rem;background:var(--surface2);border:1px solid var(--border2);border-radius:8px;font-size:.78rem;font-weight:600;cursor:pointer;color:var(--text);}
+.app{display:none;min-height:100vh;background:var(--bg);width:100%;}
+.sidebar{position:fixed;top:0;left:0;width:220px;height:100vh;background:var(--surface);border-right:1px solid var(--border);padding:1.5rem;display:flex;flex-direction:column;}
+.sidebar-logo{font-size:1.3rem;font-weight:800;margin-bottom:2rem;color:var(--text);}
+.sidebar-logo span{color:var(--primary);}
+.nav-item{display:flex;align-items:center;gap:.75rem;padding:.65rem .75rem;border-radius:8px;cursor:pointer;font-size:.875rem;color:var(--muted);margin-bottom:2px;transition:all .15s;}
+.nav-item.active,.nav-item:hover{background:var(--primary-glow);color:var(--primary);}
+.main{margin-left:220px;padding:2rem;}
+.page{display:none;}
+.page.active{display:block;}
+.page-title{font-size:1.6rem;font-weight:700;margin-bottom:.25rem;}
+.page-sub{color:var(--muted);font-size:.875rem;margin-bottom:2rem;}
+.top-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:2rem;}
+.action-btn-primary{padding:.6rem 1.2rem;background:var(--primary);border:none;border-radius:8px;color:#fff;font-size:.855rem;font-weight:600;cursor:pointer;}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:2rem;}
+.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.25rem;}
+.stat-val{font-size:2rem;font-weight:700;margin-bottom:.25rem;}
+.stat-label{font-size:.78rem;color:var(--muted);}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.5rem;margin-bottom:1.5rem;}
+.card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem;}
+.card-title{font-size:.95rem;font-weight:600;}
+.search-input{background:var(--surface2);border:1px solid var(--border2);border-radius:8px;padding:.5rem .9rem;color:var(--text);font-size:.82rem;outline:none;width:200px;}
+table{width:100%;border-collapse:collapse;}
+th{text-align:left;padding:.65rem 1rem;font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;border-bottom:1px solid var(--border);}
+td{padding:.85rem 1rem;border-bottom:1px solid var(--border);font-size:.85rem;}
+tr:last-child td{border-bottom:none;}
+.badge{display:inline-flex;padding:.2rem .65rem;border-radius:20px;font-size:.7rem;font-weight:600;}
+.badge-admin{background:#7c5cfc22;color:var(--primary);}
+.badge-user{background:#ffffff11;color:var(--muted);}
+.badge-active{background:#00e5a018;color:var(--accent);}
+.badge-inactive{background:#ff4d6d18;color:var(--danger);}
+.tbl-action{padding:.28rem .65rem;border-radius:6px;border:1px solid var(--border2);background:transparent;color:var(--muted);font-size:.72rem;cursor:pointer;margin-right:4px;}
+.tbl-action:hover{border-color:var(--primary);color:var(--primary);}
+.tbl-action.del:hover{border-color:var(--danger);color:var(--danger);}
+/* MODAL */
+.modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:500;display:flex;align-items:center;justify-content:center;}
+.modal{background:var(--surface);border:1px solid var(--border2);border-radius:16px;padding:2rem;width:400px;position:relative;}
+.modal-title{font-size:1.1rem;font-weight:700;margin-bottom:1.5rem;}
+.modal-close{position:absolute;top:1rem;right:1rem;background:none;border:none;color:var(--muted);font-size:1.2rem;cursor:pointer;}
+.modal-footer{display:flex;gap:.75rem;margin-top:1.5rem;justify-content:flex-end;}
+.btn-sm{padding:.55rem 1.1rem;border-radius:8px;border:none;font-size:.85rem;font-weight:600;cursor:pointer;}
+.btn-sm-primary{background:var(--primary);color:#fff;}
+.btn-sm-ghost{background:var(--surface2);color:var(--muted);}
+.profile-wrap{display:flex;flex-direction:column;gap:1.5rem;}
+.profile-av{width:80px;height:80px;border-radius:50%;background:var(--primary-glow);border:2px solid var(--primary);display:flex;align-items:center;justify-content:center;font-size:2rem;font-weight:700;color:var(--primary);margin:0 auto;}
+</style>
+</head>
+<body>
+<div class="auth-bg"></div>
+<div id="loginPage" class="auth-wrap">
+  <div class="auth-card">
+    <div class="logo">ZA<span>T</span>ER</div>
+    <div class="tagline">User Management System</div>
+    <div class="form-group"><label class="form-label">Email</label><input id="lEmail" class="form-input" type="email" value="admin@zater.com"/></div>
+    <div class="form-group"><label class="form-label">Password</label><input id="lPass" class="form-input" type="password" value="admin123"/></div>
+    <button class="btn btn-primary" onclick="login()">Sign In</button>
+    <div class="auth-switch">No account? <a onclick="showSignup()">Register</a></div>
+    <div class="demo-row">
+      <button class="demo-btn" onclick="ql('admin@zater.com','admin123')">🛡️ Admin Demo</button>
+      <button class="demo-btn" onclick="ql('user@zater.com','user123')">👤 User Demo</button>
+    </div>
+  </div>
+</div>
+
+<div id="appPage" class="app">
+  <div class="sidebar">
+    <div class="sidebar-logo">ZA<span>T</span>ER</div>
+    <div class="nav-item active" onclick="navTo('dashboard',this)">📊 Dashboard</div>
+    <div class="nav-item" onclick="navTo('profile',this)">👤 My Profile</div>
+    <div class="nav-item" onclick="navTo('users',this)">👥 Manage Users</div>
+    <div class="nav-item" onclick="navTo('roles',this)">🛡️ Roles & Access</div>
+    <div style="flex:1"></div>
+    <div style="display:flex;align-items:center;gap:.75rem;padding:.75rem;background:var(--surface2);border-radius:10px;">
+      <div style="width:32px;height:32px;border-radius:50%;background:var(--primary-glow);border:1px solid var(--primary);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.8rem;color:var(--primary)" id="sidebarAv">A</div>
+      <div><div style="font-size:.85rem;font-weight:500" id="sidebarName">Admin</div><div style="font-size:.72rem;color:var(--muted)" id="sidebarRole">Administrator</div></div>
+    </div>
+    <button onclick="logout()" style="margin-top:.75rem;width:100%;padding:.6rem;background:transparent;border:1px solid var(--border);border-radius:8px;color:var(--muted);cursor:pointer;font-size:.85rem;">🚪 Sign Out</button>
+  </div>
+  <div class="main">
+    <!-- DASHBOARD -->
+    <div class="page active" id="page-dashboard">
+      <div class="top-row"><div><div class="page-title">Dashboard</div><div class="page-sub" id="welcome">Welcome back!</div></div></div>
+      <div class="stats-grid">
+        <div class="stat-card"><div class="stat-val" id="st1">5</div><div class="stat-label">Total Users</div></div>
+        <div class="stat-card"><div class="stat-val" id="st2">4</div><div class="stat-label">Active</div></div>
+        <div class="stat-card"><div class="stat-val" id="st3">2</div><div class="stat-label">Admins</div></div>
+        <div class="stat-card"><div class="stat-val" id="st4">1</div><div class="stat-label">Inactive</div></div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="card-title">Recent Users</div><button class="action-btn-primary" onclick="navTo('users',document.querySelectorAll('.nav-item')[2])">View All</button></div>
+        <table><thead><tr><th>Name</th><th>Email</th><th>Role</th><th>Status</th></tr></thead><tbody id="dashTable"></tbody></table>
+      </div>
+    </div>
+    <!-- PROFILE -->
+    <div class="page" id="page-profile">
+      <div class="page-title">My Profile</div>
+      <div class="page-sub">Manage your account settings</div>
+      <div class="card" style="max-width:500px;">
+        <div class="profile-wrap">
+          <div class="profile-av" id="profileAv">A</div>
+          <div class="form-group"><label class="form-label">Full Name</label><input class="form-input" id="profileName" value="Admin User"/></div>
+          <div class="form-group"><label class="form-label">Email</label><input class="form-input" id="profileEmail" value="admin@zater.com"/></div>
+          <div class="form-group"><label class="form-label">Role</label><input class="form-input" id="profileRole" value="Administrator" disabled style="opacity:.6"/></div>
+          <div class="form-group"><label class="form-label">New Password</label><input class="form-input" type="password" id="profilePass" placeholder="Leave blank to keep current"/></div>
+          <button class="action-btn-primary" style="width:auto;align-self:flex-start;" onclick="saveProfile()">Save Changes</button>
+        </div>
+      </div>
+    </div>
+    <!-- USERS -->
+    <div class="page" id="page-users">
+      <div class="top-row">
+        <div><div class="page-title">Manage Users</div><div class="page-sub">Add, edit and remove users</div></div>
+        <button class="action-btn-primary" onclick="openAddUser()">+ Add User</button>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="card-title">All Users</div><input class="search-input" placeholder="Search users…" oninput="filterUsers(this.value)"/></div>
+        <table><thead><tr><th>Name</th><th>Email</th><th>Role</th><th>Status</th><th>Actions</th></tr></thead><tbody id="usersTable"></tbody></table>
+      </div>
+    </div>
+    <!-- ROLES -->
+    <div class="page" id="page-roles">
+      <div class="page-title">Roles & Access</div>
+      <div class="page-sub">Permission matrix for each role</div>
+      <div class="card">
+        <table>
+          <thead><tr><th>Permission</th><th>Admin</th><th>Editor</th><th>User</th></tr></thead>
+          <tbody>
+            <tr><td>View Dashboard</td><td>✅</td><td>✅</td><td>✅</td></tr>
+            <tr><td>Manage Users</td><td>✅</td><td>❌</td><td>❌</td></tr>
+            <tr><td>Create Posts</td><td>✅</td><td>✅</td><td>❌</td></tr>
+            <tr><td>Delete Posts</td><td>✅</td><td>❌</td><td>❌</td></tr>
+            <tr><td>View Reports</td><td>✅</td><td>✅</td><td>❌</td></tr>
+            <tr><td>System Settings</td><td>✅</td><td>❌</td><td>❌</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ADD USER MODAL -->
+<div id="addUserModal" class="modal-backdrop" style="display:none">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('addUserModal')">✕</button>
+    <div class="modal-title">Add New User</div>
+    <div class="form-group"><label class="form-label">Full Name</label><input class="form-input" id="newName" placeholder="John Doe"/></div>
+    <div class="form-group"><label class="form-label">Email</label><input class="form-input" id="newEmail" type="email" placeholder="john@example.com"/></div>
+    <div class="form-group"><label class="form-label">Role</label>
+      <select class="form-input" id="newRole"><option value="user">User</option><option value="admin">Admin</option></select>
+    </div>
+    <div class="form-group"><label class="form-label">Password</label><input class="form-input" id="newPass" type="password" placeholder="Min 6 characters"/></div>
+    <div class="modal-footer">
+      <button class="btn-sm btn-sm-ghost" onclick="closeModal('addUserModal')">Cancel</button>
+      <button class="btn-sm btn-sm-primary" onclick="addUser()">Add User</button>
+    </div>
+  </div>
+</div>
+
+<!-- EDIT USER MODAL -->
+<div id="editUserModal" class="modal-backdrop" style="display:none">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('editUserModal')">✕</button>
+    <div class="modal-title">Edit User</div>
+    <input type="hidden" id="editIdx"/>
+    <div class="form-group"><label class="form-label">Full Name</label><input class="form-input" id="editName"/></div>
+    <div class="form-group"><label class="form-label">Email</label><input class="form-input" id="editEmail" type="email"/></div>
+    <div class="form-group"><label class="form-label">Role</label>
+      <select class="form-input" id="editRole"><option value="user">User</option><option value="admin">Admin</option></select>
+    </div>
+    <div class="form-group"><label class="form-label">Status</label>
+      <select class="form-input" id="editStatus"><option value="active">Active</option><option value="inactive">Inactive</option></select>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-sm btn-sm-ghost" onclick="closeModal('editUserModal')">Cancel</button>
+      <button class="btn-sm btn-sm-primary" onclick="saveEdit()">Save</button>
+    </div>
+  </div>
+</div>
+
+<script>
+let users=[
+  {name:'Admin User',email:'admin@zater.com',password:'admin123',role:'admin',status:'active'},
+  {name:'Priya Sharma',email:'user@zater.com',password:'user123',role:'user',status:'active'},
+  {name:'Ravi Kumar',email:'ravi@zater.com',password:'pass123',role:'user',status:'active'},
+  {name:'Sara Ali',email:'sara@zater.com',password:'pass123',role:'admin',status:'active'},
+  {name:'Dev Nair',email:'dev@zater.com',password:'pass123',role:'user',status:'inactive'},
+];
+let cu=null;
+function ql(e,p){document.getElementById('lEmail').value=e;document.getElementById('lPass').value=p;}
+function login(){
+  const e=document.getElementById('lEmail').value.trim();
+  const p=document.getElementById('lPass').value;
+  const u=users.find(x=>x.email===e&&x.password===p);
+  if(!u){showToast('Invalid credentials','error');return;}
+  cu=u;
+  document.getElementById('loginPage').style.display='none';
+  document.getElementById('appPage').style.display='block';
+  document.getElementById('sidebarAv').textContent=cu.name[0];
+  document.getElementById('sidebarName').textContent=cu.name;
+  document.getElementById('sidebarRole').textContent=cu.role==='admin'?'Administrator':'User';
+  document.getElementById('welcome').textContent='Welcome back, '+cu.name.split(' ')[0]+' 👋';
+  document.getElementById('profileAv').textContent=cu.name[0];
+  document.getElementById('profileName').value=cu.name;
+  document.getElementById('profileEmail').value=cu.email;
+  document.getElementById('profileRole').value=cu.role==='admin'?'Administrator':'User';
+  updateStats();renderDash();renderUsers();
+}
+function logout(){
+  document.getElementById('loginPage').style.display='flex';
+  document.getElementById('appPage').style.display='none';
+  cu=null;
+}
+function showSignup(){showToast('Registration: connect to your backend API','info');}
+function navTo(id,el){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  if(el)el.classList.add('active');
+}
+function updateStats(){
+  document.getElementById('st1').textContent=users.length;
+  document.getElementById('st2').textContent=users.filter(u=>u.status==='active').length;
+  document.getElementById('st3').textContent=users.filter(u=>u.role==='admin').length;
+  document.getElementById('st4').textContent=users.filter(u=>u.status==='inactive').length;
+}
+function renderDash(){
+  document.getElementById('dashTable').innerHTML=users.slice(0,4).map(u=>
+    '<tr><td>'+u.name+'</td><td style="color:var(--muted)">'+u.email+'</td>'
+    +'<td><span class="badge badge-'+u.role+'">'+u.role+'</span></td>'
+    +'<td><span class="badge badge-'+u.status+'">'+u.status+'</span></td></tr>'
+  ).join('');
+}
+let filteredUsers=null;
+function renderUsers(){
+  const list=filteredUsers||users;
+  document.getElementById('usersTable').innerHTML=list.map((u,i)=>{
+    const idx=filteredUsers?users.indexOf(u):i;
+    return '<tr><td>'+u.name+'</td><td style="color:var(--muted)">'+u.email+'</td>'
+    +'<td><span class="badge badge-'+u.role+'">'+u.role+'</span></td>'
+    +'<td><span class="badge badge-'+u.status+'">'+u.status+'</span></td>'
+    +'<td><button class="tbl-action" onclick="openEdit('+idx+')">✏️ Edit</button>'
+    +'<button class="tbl-action del" onclick="deleteUser('+idx+')">🗑️ Delete</button></td></tr>';
+  }).join('');
+}
+function filterUsers(q){
+  filteredUsers=q?users.filter(u=>u.name.toLowerCase().includes(q.toLowerCase())||u.email.toLowerCase().includes(q.toLowerCase())):null;
+  renderUsers();
+}
+function openAddUser(){document.getElementById('addUserModal').style.display='flex';}
+function closeModal(id){document.getElementById(id).style.display='none';}
+function addUser(){
+  const name=document.getElementById('newName').value.trim();
+  const email=document.getElementById('newEmail').value.trim();
+  const role=document.getElementById('newRole').value;
+  const pass=document.getElementById('newPass').value;
+  if(!name||!email||!pass){showToast('All fields required','error');return;}
+  if(users.find(u=>u.email===email)){showToast('Email already exists','error');return;}
+  users.push({name,email,password:pass,role,status:'active'});
+  updateStats();renderDash();renderUsers();
+  closeModal('addUserModal');
+  document.getElementById('newName').value='';
+  document.getElementById('newEmail').value='';
+  document.getElementById('newPass').value='';
+  showToast('User added successfully!','success');
+}
+function openEdit(i){
+  const u=users[i];
+  document.getElementById('editIdx').value=i;
+  document.getElementById('editName').value=u.name;
+  document.getElementById('editEmail').value=u.email;
+  document.getElementById('editRole').value=u.role;
+  document.getElementById('editStatus').value=u.status;
+  document.getElementById('editUserModal').style.display='flex';
+}
+function saveEdit(){
+  const i=parseInt(document.getElementById('editIdx').value);
+  users[i].name=document.getElementById('editName').value.trim();
+  users[i].email=document.getElementById('editEmail').value.trim();
+  users[i].role=document.getElementById('editRole').value;
+  users[i].status=document.getElementById('editStatus').value;
+  updateStats();renderDash();renderUsers();
+  closeModal('editUserModal');
+  showToast('User updated!','success');
+}
+function deleteUser(i){
+  if(!confirm('Delete '+users[i].name+'?'))return;
+  users.splice(i,1);
+  updateStats();renderDash();renderUsers();
+  showToast('User deleted','success');
+}
+function saveProfile(){
+  const name=document.getElementById('profileName').value.trim();
+  const pass=document.getElementById('profilePass').value;
+  if(!name){showToast('Name required','error');return;}
+  if(cu){cu.name=name;cu.email=document.getElementById('profileEmail').value;}
+  if(pass&&pass.length<6){showToast('Password min 6 chars','error');return;}
+  document.getElementById('sidebarName').textContent=name;
+  document.getElementById('profileAv').textContent=name[0];
+  document.getElementById('sidebarAv').textContent=name[0];
+  showToast('Profile saved!','success');
+}
+function showToast(msg,type){
+  const t=document.createElement('div');
+  t.style.cssText='position:fixed;bottom:24px;right:24px;padding:.75rem 1.25rem;border-radius:10px;font-size:.875rem;font-weight:600;z-index:9999;animation:fadeIn .2s;'
+    +(type==='error'?'background:#ff4d6d22;border:1px solid #ff4d6d55;color:#ff4d6d;':type==='success'?'background:#00e5a022;border:1px solid #00e5a055;color:#00e5a0;':'background:#7c5cfc22;border:1px solid #7c5cfc55;color:#7c5cfc;');
+  t.textContent=msg;
+  document.body.appendChild(t);
+  setTimeout(()=>t.remove(),2800);
+}
+document.getElementById('loginPage').style.display='flex';
+document.getElementById('appPage').style.display='none';
+</script>
+</body>
+</html>
