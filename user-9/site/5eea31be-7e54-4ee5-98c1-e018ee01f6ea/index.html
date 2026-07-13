@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zater Booking — Elegant Wedding Halls</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root{
+  --gold:#c9a45c;
+  --gold-light:#e6cf9e;
+  --dark:#1a1523;
+  --plum:#2d2438;
+  --cream:#faf6ef;
+  --rose:#e8b4b8;
+  --text:#3a3340;
+  --shadow:0 20px 50px rgba(45,36,56,.15);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Poppins',sans-serif;color:var(--text);background:var(--cream);overflow-x:hidden}
+h1,h2,h3,.serif{font-family:'Cormorant Garamond',serif}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;width:100%;z-index:1000;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px 6%;transition:.4s;
+}
+nav.scrolled{background:rgba(26,21,35,.95);backdrop-filter:blur(10px);box-shadow:0 5px 25px rgba(0,0,0,.2)}
+.logo{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:700;color:#fff;letter-spacing:1px}
+.logo span{color:var(--gold)}
+.nav-links{display:flex;gap:32px;list-style:none}
+.nav-links a{color:#fff;text-decoration:none;font-size:.9rem;font-weight:400;transition:.3s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-6px;left:0;width:0;height:2px;background:var(--gold);transition:.3s}
+.nav-links a:hover{color:var(--gold-light)}
+.nav-links a:hover::after{width:100%}
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer}
+.burger span{width:26px;height:2px;background:#fff;transition:.3s}
+
+/* HERO */
+.hero{
+  min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(201,164,92,.25), transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(232,180,184,.25), transparent 40%),
+    linear-gradient(135deg,var(--dark),var(--plum));
+  position:relative;overflow:hidden;color:#fff;padding:0 20px;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background-image:
+    radial-gradient(circle at 15% 85%, rgba(255,255,255,.08) 0 2px, transparent 3px),
+    radial-gradient(circle at 85% 20%, rgba(255,255,255,.06) 0 2px, transparent 3px);
+  background-size:120px 120px;
+}
+.hero-content{position:relative;z-index:2;max-width:800px;animation:fadeUp 1.2s ease}
+.hero .sub{color:var(--gold);letter-spacing:5px;font-size:.85rem;text-transform:uppercase;margin-bottom:18px}
+.hero h1{font-size:clamp(2.8rem,7vw,5.5rem);line-height:1.05;font-weight:700;margin-bottom:22px}
+.hero h1 em{color:var(--gold-light);font-style:italic}
+.hero p{font-size:1.1rem;font-weight:300;max-width:560px;margin:0 auto 38px;opacity:.85}
+.btn{
+  display:inline-block;padding:15px 40px;border-radius:50px;text-decoration:none;
+  font-weight:500;font-size:.9rem;letter-spacing:1px;transition:.4s;cursor:pointer;border:none;
+}
+.btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--dark)}
+.btn-gold:hover{transform:translateY(-3px);box-shadow:0 15px 30px rgba(201,164,92,.4)}
+.btn-outline{background:transparent;border:1.5px solid var(--gold);color:var(--gold-light);margin-left:14px}
+.btn-outline:hover{background:var(--gold);color:var(--dark)}
+
+/* Floating decorative rings */
+.ring{position:absolute;border:2px solid rgba(201,164,92,.2);border-radius:50%;animation:float 8s ease-in-out infinite}
+.ring.r1{width:220px;height:220px;top:12%;left:6%}
+.ring.r2{width:140px;height:140px;bottom:14%;right:9%;animation-delay:2s}
+
+@keyframes float{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-25px) rotate(15deg)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+
+section{padding:100px 6%}
+.section-head{text-align:center;max-width:640px;margin:0 auto 60px}
+.section-head .tag{color:var(--gold);letter-spacing:3px;text-transform:uppercase;font-size:.8rem;font-weight:600}
+.section-head h2{font-size:clamp(2.2rem,5vw,3.4rem);color:var(--dark);margin:10px 0 16px}
+.section-head p{opacity:.75;font-weight:300}
+
+/* FEATURES */
+.features{background:#fff}
+.feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:32px}
+.feat-card{
+  padding:42px 32px;border-radius:20px;background:var(--cream);text-align:center;
+  transition:.4s;border:1px solid transparent;
+}
+.feat-card:hover{transform:translateY(-10px);box-shadow:var(--shadow);border-color:var(--gold-light);background:#fff}
+.feat-icon{
+  width:70px;height:70px;margin:0 auto 22px;border-radius:50%;
+  background:linear-gradient(135deg,var(--gold),var(--gold-light));
+  display:flex;align-items:center;justify-content:center;
+}
+.feat-card h3{font-size:1.5rem;color:var(--dark);margin-bottom:12px}
+.feat-card p{font-size:.92rem;opacity:.75;font-weight:300}
+
+/* HALLS / AVAILABILITY */
+.halls{background:linear-gradient(180deg,var(--cream),#f2ece1)}
+.filter-bar{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-bottom:40px}
+.filter-bar input,.filter-bar select{
+  padding:13px 18px;border:1px solid #ddd;border-radius:12px;font-family:inherit;font-size:.9rem;background:#fff;outline:none;transition:.3s;
+}
+.filter-bar input:focus,.filter-bar select:focus{border-color:var(--gold)}
+.hall-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:30px}
+.hall-card{
+  background:#fff;border-radius:20px;overflow:hidden;box-shadow:var(--shadow);transition:.4s;
+}
+.hall-card:hover{transform:translateY(-8px)}
+.hall-img{height:190px;position:relative;display:flex;align-items:flex-end;justify-content:space-between;padding:14px}
+.h1i{background:linear-gradient(135deg,#5c4a7a,#8b6fb5)}
+.h2i{background:linear-gradient(135deg,#a8894b,#d9bd7d)}
+.h3i{background:linear-gradient(135deg,#7a4a5c,#c47d95)}
+.h4i{background:linear-gradient(135deg,#4a6a7a,#7db0c4)}
+.h5i{background:linear-gradient(135deg,#6a5c4a,#b59f7d)}
+.h6i{background:linear-gradient(135deg,#4a7a5c,#7dc499)}
+.badge{padding:6px 14px;border-radius:20px;font-size:.72rem;font-weight:600;color:#fff}
+.badge.available{background:rgba(46,160,86,.9)}
+.badge.booked{background:rgba(200,60,60,.9)}
+.cap{background:rgba(0,0,0,.35);color:#fff;padding:6px 12px;border-radius:20px;font-size:.72rem;backdrop-filter:blur(4px)}
+.hall-body{padding:22px}
+.hall-body h3{font-size:1.6rem;color:var(--dark)}
+.hall-body .loc{font-size:.85rem;opacity:.6;margin:4px 0 12px}
+.hall-meta{display:flex;justify-content:space-between;align-items:center;margin-top:14px}
+.price{font-weight:600;color:var(--gold);font-size:1.15rem}
+.price small{color:var(--text);font-weight:300;font-size:.75rem}
+.book-btn{padding:9px 22px;border-radius:30px;font-size:.82rem;border:none;cursor:pointer;font-weight:500;transition:.3s}
+.book-btn.on{background:var(--dark);color:#fff}
+.book-btn.on:hover{background:var(--gold);color:var(--dark)}
+.book-btn.off{background:#eee;color:#aaa;cursor:not-allowed}
+
+/* ABOUT */
+.about{display:flex;flex-wrap:wrap;align-items:center;gap:60px;background:#fff}
+.about-img{flex:1;min-width:300px;height:420px;border-radius:24px;position:relative;overflow:hidden;
+  background:linear-gradient(135deg,var(--plum),var(--gold));box-shadow:var(--shadow)}
+.about-img::after{content:'💍';position:absolute;font-size:6rem;top:50%;left:50%;transform:translate(-50%,-50%);opacity:.3}
+.about-text{flex:1;min-width:300px}
+.about-text .tag{color:var(--gold);letter-spacing:3px;text-transform:uppercase;font-size:.8rem;font-weight:600}
+.about-text h2{font-size:clamp(2rem,4vw,3rem);color:var(--dark);margin:10px 0 20px}
+.about-text p{opacity:.8;font-weight:300;margin-bottom:18px;line-height:1.8}
+.stats{display:flex;gap:36px;margin-top:26px;flex-wrap:wrap}
+.stat h3{font-size:2.4rem;color:var(--gold)}
+.stat span{font-size:.85rem;opacity:.7}
+
+/* CONTACT */
+.contact{background:linear-gradient(135deg,var(--dark),var(--plum));color:#fff}
+.contact .section-head h2{color:#fff}
+.contact .section-head p{opacity:.7}
+.contact-wrap{max-width:640px;margin:0 auto;background:rgba(255,255,255,.05);padding:44px;border-radius:24px;backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.1)}
+.form-row{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:16px}
+.form-row input,.contact-wrap textarea{
+  flex:1;min-width:200px;padding:14px 18px;border-radius:12px;border:1px solid rgba(255,255,255,.15);
+  background:rgba(255,255,255,.07);color:#fff;font-family:inherit;font-size:.9rem;outline:none;transition:.3s;
+}
+.contact-wrap textarea{width:100%;resize:vertical;min-height:120px;margin-bottom:16px}
+::placeholder{color:rgba(255,255,255,.5)}
+.contact-wrap input:focus,.contact-wrap textarea:focus{border-color:var(--gold)}
+.contact-wrap .btn-gold{width:100%}
+
+/* FOOTER */
+footer{background:#12101a;color:#fff;padding:50px 6% 26px;text-align:center}
+.footer-logo{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:700;margin-bottom:14px}
+.footer-logo span{color:var(--gold)}
+.footer-links{display:flex;gap:26px;justify-content:center;flex-wrap:wrap;margin:20px 0}
+.footer-links a{color:rgba(255,255,255,.6);text-decoration:none;font-size:.9rem;transition:.3s}
+.footer-links a:hover{color:var(--gold)}
+.copy{opacity:.4;font-size:.8rem;margin-top:20px}
+
+.reveal{opacity:0;transform:translateY(40px);transition:.8s}
+.reveal.show{opacity:1;transform:translateY(0)}
+
+/* Modal */
+.modal{position:fixed;inset:0;background:rgba(26,21,35,.7);display:none;align-items:center;justify-content:center;z-index:2000;padding:20px}
+.modal.open{display:flex}
+.modal-box{background:#fff;padding:40px;border-radius:24px;max-width:420px;text-align:center;animation:fadeUp .4s}
+.modal-box h3{font-size:2rem;color:var(--dark);margin-bottom:10px}
+.modal-box p{opacity:.7;margin-bottom:24px}
+
+@media(max-width:768px){
+  .nav-links{position:fixed;top:0;right:-100%;flex-direction:column;background:var(--dark);height:100vh;width:70%;padding:100px 40px;transition:.4s;gap:28px}
+  .nav-links.open{right:0}
+  .burger{display:flex}
+  .btn-outline{margin-left:0;margin-top:14px}
+  .about{gap:36px}
+}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="logo">Zater<span>Booking</span></div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#features">Why Us</a></li>
+    <li><a href="#halls">Halls</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="burger" id="burger"><span></span><span></span><span></span></div>
+</nav>
+
+<header class="hero" id="home">
+  <div class="ring r1"></div>
+  <div class="ring r2"></div>
+  <div class="hero-content">
+    <p class="sub">Elegant Wedding Venues</p>
+    <h1>Where <em>Forever</em><br>Begins Beautifully</h1>
+    <p>Discover and book stunning wedding halls in real time. See live availability, compare venues, and reserve your perfect day with Zater Booking.</p>
+    <a href="#halls" class="btn btn-gold">Check Availability</a>
+    <a href="#contact" class="btn btn-outline">Talk to Us</a>
+  </div>
+</header>
+
+<section class="features" id="features">
+  <div class="section-head reveal">
+    <span class="tag">Why Zater Booking</span>
+    <h2>Everything For Your Perfect Day</h2>
+    <p>We make finding and booking your dream wedding hall effortless, transparent, and unforgettable.</p>
+  </div>
+  <div class="feat-grid">
+    <div class="feat-card reveal">
+      <div class="feat-icon"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#1a1523" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></div>
+      <h3>Live Availability</h3>
+      <p>See real-time open dates for every hall and reserve instantly, no back and forth.</p>
+    </div>
+    <div class="feat-card reveal">
+      <div class="feat-icon"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#1a1523" stroke-width="2"><path d="M12 2l2.4 7.4H22l-6 4.5 2.3 7.1L12 16.6 5.7 21l2.3-7.1-6-4.5h7.6z"/></svg></div>
+      <h3>Premium Venues</h3>
+      <p>Handpicked luxury halls with elegant decor, grand ballrooms, and full amenities.</p>
+    </div>
+    <div class="feat-card reveal">
+      <div class="feat-icon"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#1a1523" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 00-7.8 0L12 5.6l-1-1a5.5 5.5 0 00-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 000-7.8z"/></svg></div>
+      <h3>Dedicated Support</h3>
+      <p>Our wedding coordinators guide you from first click to the last dance.</p>
+    </div>
+    <div class="feat-card reveal">
+      <div class="feat-icon"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#1a1523" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
+      <h3>Transparent Pricing</h3>
+      <p>Clear packages with no hidden fees. Know exactly what you pay upfront.</p>
+    </div>
+  </div>
+</section>
+
+<section class="halls" id="halls">
+  <div class="section-head reveal">
+    <span class="tag">Browse & Book</span>
+    <h2>Available Wedding Halls</h2>
+    <p>Filter by date and guest capacity to instantly view halls ready for your celebration.</p>
+  </div>
+
+  <div class="filter-bar reveal">
+    <input type="date" id="fDate">
+    <select id="fCap">
+      <option value="0">Any Capacity</option>
+      <option value="200">200+ Guests</option>
+      <option value="400">400+ Guests</option>
+      <option value="600">600+ Guests</option>
+    </select>
+    <select id="fStatus">
+      <option value="all">All Halls</option>
+      <option value="available">Available Only</option>
+    </select>
+  </div>
+
+  <div class="hall-grid" id="hallGrid"></div>
+</section>
+
+<section class="about" id="about">
+  <div class="about-img reveal"></div>
+  <div class="about-text reveal">
+    <span class="tag">About Us</span>
+    <h2>Crafting Unforgettable Celebrations</h2>
+    <p>Zater Booking was founded on a simple belief: booking your wedding venue should be as joyful as the day itself. We bring together the finest halls under one elegant platform.</p>
+    <p>With live availability, verified venues, and a caring team, thousands of couples have started their forever with us.</p>
+    <div class="stats">
+      <div class="stat"><h3>120+</h3><span>Luxury Halls</span></div>
+      <div class="stat"><h3>8K+</h3><span>Happy Couples</span></div>
+      <div class="stat"><h3>15</h3><span>Cities Covered</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="section-head reveal">
+    <span class="tag">Get In Touch</span>
+    <h2>Reserve Your Date</h2>
+    <p>Have questions or ready to book? Send us a message and our team will respond within 24 hours.</p>
+  </div>
+  <div class="contact-wrap reveal">
+    <form id="cForm">
+      <div class="form-row">
+        <input type="text" placeholder="Full Name" required>
+        <input type="email" placeholder="Email Address" required>
+      </div>
+      <div class="form-row">
+        <input type="tel" placeholder="Phone Number">
+        <input type="date" required>
+      </div>
+      <textarea placeholder="Tell us about your dream wedding..."></textarea>
+      <button type="submit" class="btn btn-gold">Send Inquiry</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">Zater<span>Booking</span></div>
+  <p style="opacity:.6;max-width:400px;margin:0 auto;font-weight:300">Making dream weddings simple, one hall at a time.</p>
+  <div class="footer-links">
+    <a href="#home">Home</a>
+    <a href="#features">Why Us</a>
+    <a href="#halls">Halls</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <p class="copy">© 2024 Zater Booking. All rights reserved.</p>
+</footer>
+
+<div class="modal" id="modal">
+  <div class="modal-box">
+    <h3 id="mTitle">Booking Confirmed!</h3>
+    <p id="mText"></p>
+    <button class="btn btn-gold" onclick="closeModal()">Done</button>
+  </div>
+</div>
+
+<script>
+// Nav scroll
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>50));
+
+// Burger
+const burger=document.getElementById('burger'),navLinks=document.getElementById('navLinks');
+burger.addEventListener('click',()=>navLinks.classList.toggle('open'));
+document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>navLinks.classList.remove('open')));
+
+// Reveal on scroll
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')}),{threshold:.15});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// Halls data
+const halls=[
+  {n:'Royal Crystal Hall',l:'Downtown City Center',cap:600,price:8500,img:'h1i',status:'available'},
+  {n:'Golden Palace',l:'Riverside Boulevard',cap:400,price:6200,img:'h2i',status:'available'},
+  {n:'Rose Garden Venue',l:'Hillcrest Gardens',cap:250,price:4800,img:'h3i',status:'booked'},
+  {n:'Azure Grand Ballroom',l:'Seaview District',cap:500,price:7100,img:'h4i',status:'available'},
+  {n:'Amber Terrace',l:'Old Town Square',cap:200,price:3900,img:'h5i',status:'available'},
+  {n:'Emerald Court',l:'Green Valley',cap:450,price:6800,img:'h6i',status:'booked'},
+];
+
+const grid=document.getElementById('hallGrid');
+function render(list){
+  grid.innerHTML='';
+  if(!list.length){grid.innerHTML='<p style="text-align:center;grid-column:1/-1;opacity:.6">No halls match your filters. Try adjusting the search.</p>';return;}
+  list.forEach(h=>{
+    const av=h.status==='available';
+    grid.insertAdjacentHTML('beforeend',`
+      <div class="hall-card reveal show">
+        <div class="hall-img ${h.img}">
+          <span class="badge ${av?'available':'booked'}">${av?'Available':'Fully Booked'}</span>
+          <span class="cap">👥 ${h.cap} guests</span>
+        </div>
+        <div class="hall-body">
+          <h3>${h.n}</h3>
+          <div class="loc">📍 ${h.l}</div>
+          <div class="hall-meta">
+            <div class="price">$${h.price.toLocaleString()} <small>/ event</small></div>
+            <button class="book-btn ${av?'on':'off'}" ${av?`onclick="book('${h.n}')"`:'disabled'}>${av?'Book Now':'Unavailable'}</button>
+          </div>
+        </div>
+      </div>`);
+  });
+}
+render(halls);
+
+// Filters
+function filter(){
+  const cap=+document.getElementById('fCap').value;
+  const st=document.getElementById('fStatus').value;
+  let list=halls.filter(h=>h.cap>=cap);
+  if(st==='available')list=list.filter(h=>h.status==='available');
+  render(list);
+}
+document.getElementById('fCap').addEventListener('change',filter);
+document.getElementById('fStatus').addEventListener('change',filter);
+document.getElementById('fDate').addEventListener('change',filter);
+
+// Modal
+const modal=document.getElementById('modal');
+function book(name){
+  const date=document.getElementById('fDate').value;
+  document.getElementById('mTitle').textContent='Great Choice! ✨';
+  document.getElementById('mText').textContent=`You're reserving "${name}"${date?' for '+date:''}. Our team will contact you shortly to confirm your booking.`;
+  modal.classList.add('open');
+}
+function closeModal(){modal.classList.remove('open')}
+modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});
+
+// Contact form
+document.getElementById('cForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  document.getElementById('mTitle').textContent='Message Sent! 💌';
+  document.getElementById('mText').textContent='Thank you for reaching out to Zater Booking. Our wedding coordinators will get back to you within 24 hours.';
+  modal.classList.add('open');
+  e.target.reset();
+});
+</script>
+</body>
+</html>
