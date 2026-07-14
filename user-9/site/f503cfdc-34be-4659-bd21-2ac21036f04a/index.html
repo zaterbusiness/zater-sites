@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>ZATER Book</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#f0f4ff;--surface:#fff;--border:#c8d0e8;--primary:#2563eb;--primary-light:#dbeafe;--dark:#0f172a;--text:#0f172a;--muted:#64748b;--success:#16a34a;--font:system-ui,sans-serif;}
+body{font-family:var(--font);background:var(--bg);color:var(--text);}
+.topbar{background:var(--surface);border-bottom:1.5px solid var(--border);height:64px;display:flex;align-items:center;padding:0 2rem;gap:2rem;position:sticky;top:0;z-index:100;}
+.tb-logo{font-size:1.3rem;font-weight:700;color:var(--dark);}
+.tb-logo span{color:var(--primary);}
+.tb-nav{display:flex;gap:.25rem;}
+.tb-btn{padding:.45rem .9rem;border-radius:7px;border:none;background:transparent;font-size:.85rem;font-weight:500;cursor:pointer;color:var(--muted);}
+.tb-btn:hover,.tb-btn.active{background:var(--primary-light);color:var(--primary);}
+.main{max-width:900px;margin:0 auto;padding:2rem;}
+.page-title{font-size:1.8rem;font-weight:700;margin-bottom:.25rem;}
+.page-sub{color:var(--muted);font-size:.875rem;margin-bottom:2rem;}
+.booking-layout{display:grid;grid-template-columns:1fr 320px;gap:1.5rem;}
+.cal-card{background:var(--surface);border:1.5px solid var(--border);border-radius:14px;overflow:hidden;}
+.cal-header{padding:1rem 1.25rem;border-bottom:1.5px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.cal-month{font-weight:600;}
+.cal-nav{width:30px;height:30px;border-radius:7px;border:1.5px solid var(--border);background:var(--bg);cursor:pointer;font-size:1rem;}
+.cal-grid{padding:1rem;display:grid;grid-template-columns:repeat(7,1fr);gap:4px;}
+.cal-day-lbl{text-align:center;font-size:.7rem;font-weight:600;color:var(--muted);padding:.25rem;}
+.cal-date{width:34px;height:34px;border-radius:8px;border:none;background:transparent;cursor:pointer;font-size:.82rem;display:flex;align-items:center;justify-content:center;margin:0 auto;transition:all .15s;}
+.cal-date:hover{background:var(--primary-light);color:var(--primary);}
+.cal-date.selected{background:var(--primary);color:#fff;}
+.cal-date.today{border:1.5px solid var(--primary);color:var(--primary);font-weight:600;}
+.slots-card{background:var(--surface);border:1.5px solid var(--border);border-radius:14px;padding:1.25rem;display:flex;flex-direction:column;}
+.slots-title{font-weight:600;margin-bottom:1rem;font-size:.95rem;}
+.form-group{margin-bottom:1rem;}
+.form-label{display:block;font-size:.72rem;font-weight:600;color:var(--muted);text-transform:uppercase;margin-bottom:.4rem;}
+.form-input,.form-select{width:100%;background:var(--bg);border:1.5px solid var(--border);border-radius:8px;padding:.65rem .9rem;font-size:.875rem;color:var(--text);outline:none;}
+.form-input:focus,.form-select:focus{border-color:var(--primary);}
+.slots-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;margin-bottom:1.25rem;}
+.slot-btn{padding:.45rem;border-radius:7px;border:1.5px solid var(--border);background:var(--bg);font-size:.78rem;font-weight:500;cursor:pointer;text-align:center;transition:all .15s;}
+.slot-btn:hover{border-color:var(--primary);color:var(--primary);}
+.slot-btn.selected{background:var(--primary);border-color:var(--primary);color:#fff;}
+.book-btn{width:100%;padding:.8rem;background:var(--primary);color:#fff;border:none;border-radius:8px;font-size:.9rem;font-weight:600;cursor:pointer;margin-top:auto;}
+.book-btn:hover{opacity:.9;}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div class="tb-logo">ZATER <span>Book</span></div>
+  <div class="tb-nav">
+    <button class="tb-btn active">📅 Book Slot</button>
+    <button class="tb-btn">📋 My Bookings</button>
+  </div>
+  <div style="margin-left:auto;display:flex;align-items:center;gap:.75rem;">
+    <div style="font-size:.875rem;font-weight:500;">Meena Patel</div>
+    <button onclick="alert('Sign out')" style="color:var(--muted);background:none;border:1px solid var(--border);border-radius:7px;padding:.35rem .7rem;font-size:.78rem;cursor:pointer;">Sign Out</button>
+  </div>
+</div>
+<div class="main">
+  <div class="page-title">Book an Appointment</div>
+  <div class="page-sub">Choose a service, pick a date and select an available time slot</div>
+  <div class="booking-layout">
+    <div class="cal-card">
+      <div class="cal-header">
+        <button class="cal-nav" onclick="changeMonth(-1)">‹</button>
+        <div class="cal-month" id="calMonth">April 2025</div>
+        <button class="cal-nav" onclick="changeMonth(1)">›</button>
+      </div>
+      <div class="cal-grid" id="calGrid"></div>
+    </div>
+    <div class="slots-card">
+      <div class="slots-title" id="slotTitle">Select a date</div>
+      <div class="form-group">
+        <label class="form-label">Service</label>
+        <select class="form-select">
+          <option>Haircut & Styling</option>
+          <option>Beard Trim</option>
+          <option>Facial Treatment</option>
+          <option>Full Body Massage</option>
+        </select>
+      </div>
+      <div class="form-label" style="margin-bottom:.5rem">Available Slots</div>
+      <div class="slots-grid" id="slotsGrid"><div style="color:var(--muted);font-size:.82rem;grid-column:span 3">← Pick a date first</div></div>
+      <button class="book-btn" onclick="alert('Booking confirmed! Admin will approve shortly.')">Confirm Booking</button>
+    </div>
+  </div>
+</div>
+<script>
+const months=['January','February','March','April','May','June','July','August','September','October','November','December'];
+const days=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+const slots=['09:00','09:30','10:00','10:30','11:00','12:00','14:00','14:30','15:00','16:00','16:30','17:00'];
+let yr=2025,mo=3,selDate=null,selSlot=null;
+function changeMonth(d){mo+=d;if(mo>11){mo=0;yr++;}if(mo<0){mo=11;yr--;}renderCal();}
+function renderCal(){
+  document.getElementById('calMonth').textContent=months[mo]+' '+yr;
+  const first=new Date(yr,mo,1).getDay();
+  const days_in=new Date(yr,mo+1,0).getDate();
+  const today=new Date();
+  let html=days.map(d=>'<div class="cal-day-lbl">'+d+'</div>').join('');
+  for(let i=0;i<first;i++)html+='<div></div>';
+  for(let d=1;d<=days_in;d++){
+    const ds=yr+'-'+(mo+1).toString().padStart(2,'0')+'-'+d.toString().padStart(2,'0');
+    const past=new Date(yr,mo,d)<new Date(today.getFullYear(),today.getMonth(),today.getDate());
+    const isToday=d===today.getDate()&&mo===today.getMonth()&&yr===today.getFullYear();
+    const weekend=[0,6].includes(new Date(yr,mo,d).getDay());
+    html+='<button class="cal-date'+(selDate===ds?' selected':'')+(isToday&&selDate!==ds?' today':'')+'" '+(past||weekend?'style="opacity:.35;cursor:not-allowed"':' onclick="selD(''+ds+'')"')+'>'+d+'</button>';
+  }
+  document.getElementById('calGrid').innerHTML=html;
+}
+function selD(ds){
+  selDate=ds;selSlot=null;
+  document.getElementById('slotTitle').textContent=new Date(ds+'T12:00:00').toLocaleDateString('en-IN',{weekday:'long',day:'numeric',month:'long'});
+  document.getElementById('slotsGrid').innerHTML=slots.map(s=>'<button class="slot-btn" onclick="selS(''+s+'',this)">'+s+'</button>').join('');
+  renderCal();
+}
+function selS(s,el){selSlot=s;document.querySelectorAll('.slot-btn').forEach(b=>b.classList.remove('selected'));el.classList.add('selected');}
+renderCal();
+</script>
+</body>
+</html>
