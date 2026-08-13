@@ -209,4 +209,5 @@ const obs=new IntersectionObserver(entries=>{entries.forEach((e,i)=>{if(e.isInte
 document.querySelectorAll('.prod-card,.cat-card').forEach(el=>{el.style.opacity='0';obs.observe(el);});
 document.querySelectorAll('.filter-btn').forEach(btn=>{btn.addEventListener('click',()=>{document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');});});
 </script>
+<script>(function(){try{fetch('https://YOUR-BACKEND.onrender.com/api/analytics/track/754625b5-2359-4d89-a5b3-e17bec20c26f',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({referrer:document.referrer})}).catch(function(){});}catch(e){}})();</script>
 </body></html>
