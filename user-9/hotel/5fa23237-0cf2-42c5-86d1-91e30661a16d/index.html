@@ -235,4 +235,5 @@ for(let i=0;i<30;i++){const p=document.createElement('div');p.style.cssText='pos
 const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.style.animation='fadeUp 0.8s ease forwards';e.target.style.opacity='1';}});},{threshold:0.1});
 document.querySelectorAll('.room-card,.amenity,.testi-card,.stat-item').forEach(el=>{el.style.opacity='0';obs.observe(el);});
 </script>
+<script>(function(){try{fetch('https://zws-backend-4.onrender.com/api/analytics/track/5fa23237-0cf2-42c5-86d1-91e30661a16d',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({referrer:document.referrer})}).catch(function(){});}catch(e){}})();</script>
 </body></html>
