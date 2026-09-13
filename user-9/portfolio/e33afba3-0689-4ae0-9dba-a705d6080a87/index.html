@@ -170,4 +170,5 @@ document.querySelectorAll('.skills-grid').forEach(el=>obs.observe(el));
 const fadeObs=new IntersectionObserver(entries=>{entries.forEach((e,i)=>{if(e.isIntersecting)setTimeout(()=>{e.target.style.animation='fadeUp 0.6s ease forwards';e.target.style.opacity='1';},i*80);});},{threshold:0.1});
 document.querySelectorAll('.proj-card').forEach(el=>{el.style.opacity='0';fadeObs.observe(el);});
 </script>
+<script>(function(){try{fetch('https://YOUR-BACKEND.onrender.com/api/analytics/track/e33afba3-0689-4ae0-9dba-a705d6080a87',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({referrer:document.referrer})}).catch(function(){});}catch(e){}})();</script>
 </body></html>
