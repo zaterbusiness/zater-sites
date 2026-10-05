@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aathish Herbal Oil — Pure Natural Wellness</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Cormorant+Garamond:wght@500;600;700&display=swap');
+
+:root{
+  --green:#2e7d4f;
+  --green-dark:#1b5e37;
+  --green-light:#e6f4ec;
+  --gold:#c8a24a;
+  --cream:#f8faf6;
+  --ink:#1f2a22;
+  --muted:#5e6c62;
+  --white:#ffffff;
+  --shadow:0 12px 40px rgba(46,125,79,.12);
+  --radius:20px;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Poppins',sans-serif;
+  color:var(--ink);
+  background:var(--white);
+  line-height:1.6;
+  overflow-x:hidden;
+}
+h1,h2,h3{font-family:'Cormorant Garamond',serif;font-weight:700;line-height:1.1}
+section{padding:90px 7%}
+.serif{font-family:'Cormorant Garamond',serif}
+
+/* NAV */
+nav{
+  position:sticky;top:0;z-index:999;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 7%;
+  background:rgba(255,255,255,.92);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid #eef3ef;
+}
+.logo{display:flex;align-items:center;gap:10px;cursor:pointer}
+.logo svg{width:42px;height:42px}
+.logo span{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:700;color:var(--green-dark)}
+.logo span b{color:var(--gold)}
+.nav-links{display:flex;gap:6px;align-items:center}
+.nav-links button{
+  background:none;border:none;cursor:pointer;
+  font-family:'Poppins',sans-serif;font-size:.95rem;font-weight:500;
+  color:var(--ink);padding:8px 14px;border-radius:30px;transition:.25s;
+}
+.nav-links button:hover{background:var(--green-light);color:var(--green-dark)}
+.btn-primary{
+  background:var(--green);color:#fff !important;border:none;cursor:pointer;
+  font-family:'Poppins',sans-serif;font-weight:600;font-size:.95rem;
+  padding:12px 26px;border-radius:30px;transition:.3s;
+  box-shadow:0 8px 20px rgba(46,125,79,.3);
+}
+.btn-primary:hover{background:var(--green-dark);transform:translateY(-2px)}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer}
+.hamburger span{width:26px;height:3px;background:var(--green-dark);border-radius:3px;transition:.3s}
+
+/* HERO */
+.hero{
+  display:grid;grid-template-columns:1.05fr 1fr;gap:50px;align-items:center;
+  background:linear-gradient(135deg,#f8faf6 0%,#e6f4ec 100%);
+  position:relative;overflow:hidden;
+}
+.hero-blob{position:absolute;top:-120px;right:-120px;width:500px;opacity:.4;z-index:0}
+.hero-text{position:relative;z-index:2}
+.badge{
+  display:inline-block;background:#fff;border:1px solid var(--green-light);
+  color:var(--green-dark);font-size:.8rem;font-weight:600;letter-spacing:1px;
+  padding:7px 16px;border-radius:30px;margin-bottom:22px;text-transform:uppercase;
+}
+.hero h1{font-size:4rem;color:var(--green-dark);margin-bottom:18px}
+.hero h1 em{color:var(--gold);font-style:normal}
+.hero p{font-size:1.1rem;color:var(--muted);max-width:480px;margin-bottom:30px}
+.hero-cta{display:flex;gap:16px;flex-wrap:wrap}
+.btn-ghost{
+  background:#fff;border:2px solid var(--green);color:var(--green-dark);cursor:pointer;
+  font-family:'Poppins',sans-serif;font-weight:600;padding:11px 26px;border-radius:30px;transition:.3s;
+}
+.btn-ghost:hover{background:var(--green);color:#fff}
+.hero-stats{display:flex;gap:34px;margin-top:40px}
+.hero-stats div{text-align:left}
+.hero-stats b{font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--green);display:block}
+.hero-stats small{color:var(--muted);font-size:.85rem}
+.hero-art{position:relative;z-index:2}
+.hero-art svg{width:100%;height:auto;filter:drop-shadow(0 20px 40px rgba(46,125,79,.18))}
+
+/* SECTION HEADINGS */
+.sec-head{text-align:center;max-width:650px;margin:0 auto 55px}
+.sec-head .kicker{color:var(--gold);font-weight:600;letter-spacing:2px;text-transform:uppercase;font-size:.8rem}
+.sec-head h2{font-size:3rem;color:var(--green-dark);margin:10px 0}
+.sec-head p{color:var(--muted)}
+
+/* PRODUCTS */
+.products{background:var(--white)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:30px}
+.card{
+  background:#fff;border:1px solid #eef3ef;border-radius:var(--radius);
+  overflow:hidden;transition:.35s;position:relative;
+}
+.card:hover{transform:translateY(-8px);box-shadow:var(--shadow);border-color:var(--green-light)}
+.card-img{background:linear-gradient(135deg,#f3f8f3,#e6f4ec);padding:22px}
+.card-img svg{width:100%;height:auto}
+.card-body{padding:22px 24px 26px}
+.card-body h3{font-size:1.5rem;color:var(--green-dark)}
+.card-body .size{color:var(--gold);font-size:.82rem;font-weight:600;letter-spacing:1px;text-transform:uppercase}
+.card-body p{color:var(--muted);font-size:.9rem;margin:8px 0 14px}
+.card-foot{display:flex;align-items:center;justify-content:space-between}
+.price{font-size:1.6rem;font-weight:700;font-family:'Cormorant Garamond',serif;color:var(--ink)}
+.price span{font-size:.9rem;color:var(--muted);font-weight:400}
+.card-foot button{
+  background:var(--green);color:#fff;border:none;cursor:pointer;
+  font-family:'Poppins',sans-serif;font-weight:600;font-size:.85rem;
+  padding:9px 18px;border-radius:30px;transition:.3s;
+}
+.card-foot button:hover{background:var(--green-dark)}
+.tag{position:absolute;top:16px;right:16px;background:var(--gold);color:#fff;font-size:.7rem;font-weight:600;padding:5px 12px;border-radius:20px;z-index:3}
+
+/* BENEFITS */
+.benefits{background:var(--cream)}
+.b-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:28px}
+.b-card{background:#fff;border-radius:var(--radius);padding:34px 28px;text-align:center;transition:.3s;border:1px solid #eef3ef}
+.b-card:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+.b-icon{width:72px;height:72px;margin:0 auto 18px;background:var(--green-light);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.b-icon svg{width:40px;height:40px}
+.b-card h3{font-size:1.4rem;color:var(--green-dark);margin-bottom:8px}
+.b-card p{color:var(--muted);font-size:.9rem}
+
+/* INGREDIENTS */
+.ingredients{background:var(--white)}
+.ing-wrap{display:grid;grid-template-columns:1fr 1fr;gap:55px;align-items:center}
+.ing-art svg{width:100%;height:auto}
+.ing-list{display:flex;flex-direction:column;gap:18px}
+.ing-item{display:flex;gap:16px;align-items:flex-start;padding:16px 20px;background:var(--cream);border-radius:16px;border-left:4px solid var(--green);transition:.3s}
+.ing-item:hover{transform:translateX(6px);background:var(--green-light)}
+.ing-item .leaf{width:38px;height:38px;flex-shrink:0}
+.ing-item h4{color:var(--green-dark);font-family:'Poppins',sans-serif;font-size:1rem;font-weight:600}
+.ing-item p{color:var(--muted);font-size:.85rem;margin:0}
+
+/* ABOUT */
+.about{background:linear-gradient(135deg,#e6f4ec,#f8faf6);position:relative;overflow:hidden}
+.about-wrap{display:grid;grid-template-columns:1fr 1.1fr;gap:55px;align-items:center;position:relative;z-index:2}
+.about-art svg{width:100%;height:auto;filter:drop-shadow(0 16px 32px rgba(46,125,79,.15))}
+.about-text h2{font-size:2.8rem;color:var(--green-dark);margin-bottom:16px}
+.about-text p{color:var(--muted);margin-bottom:16px}
+.about-points{display:flex;flex-direction:column;gap:12px;margin-top:20px}
+.about-points div{display:flex;gap:10px;align-items:center;font-weight:500;color:var(--ink)}
+.about-points svg{width:22px;height:22px;flex-shrink:0}
+
+/* TESTIMONIALS */
+.testi{background:var(--cream)}
+.t-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:28px}
+.t-card{background:#fff;border-radius:var(--radius);padding:30px;box-shadow:0 6px 20px rgba(46,125,79,.06);transition:.3s}
+.t-card:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+.stars{color:var(--gold);margin-bottom:12px;font-size:1.1rem}
+.t-card p{color:var(--muted);font-style:italic;margin-bottom:18px}
+.t-person{display:flex;align-items:center;gap:12px}
+.t-person svg{width:46px;height:46px}
+.t-person b{color:var(--green-dark);display:block;font-family:'Poppins',sans-serif;font-size:.95rem}
+.t-person small{color:var(--muted)}
+
+/* CONTACT / ORDER */
+.contact{background:var(--white)}
+.c-wrap{display:grid;grid-template-columns:1fr 1.1fr;gap:50px;align-items:start}
+.c-info{background:linear-gradient(135deg,var(--green),var(--green-dark));color:#fff;border-radius:var(--radius);padding:44px 38px}
+.c-info h3{font-size:2rem;margin-bottom:10px}
+.c-info p{opacity:.9;margin-bottom:28px}
+.c-info .row{display:flex;gap:14px;align-items:center;margin-bottom:20px}
+.c-info .row svg{width:30px;height:30px;flex-shrink:0}
+.c-info .row span{font-size:.95rem}
+form{background:var(--cream);border-radius:var(--radius);padding:40px 36px;border:1px solid #eef3ef}
+form label{display:block;font-size:.85rem;font-weight:600;color:var(--green-dark);margin-bottom:6px;margin-top:16px}
+form label:first-child{margin-top:0}
+form input,form select,form textarea{
+  width:100%;padding:13px 16px;border:1px solid #dfe8e0;border-radius:12px;
+  font-family:'Poppins',sans-serif;font-size:.95rem;background:#fff;transition:.25s;
+}
+form input:focus,form select:focus,form textarea:focus{outline:none;border-color:var(--green);box-shadow:0 0 0 3px var(--green-light)}
+form textarea{resize:vertical;min-height:90px}
+form button{width:100%;margin-top:24px;padding:15px}
+.form-note{text-align:center;color:var(--green);font-weight:600;margin-top:16px;display:none}
+
+/* FOOTER */
+footer{background:var(--ink);color:#cdd7cf;padding:60px 7% 30px}
+.f-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.f-brand .logo span{color:#fff}
+.f-brand p{margin-top:16px;font-size:.9rem;max-width:280px;opacity:.75}
+footer h4{color:#fff;font-family:'Poppins',sans-serif;font-size:1rem;margin-bottom:16px}
+footer ul{list-style:none}
+footer ul li{margin-bottom:10px}
+footer ul button{background:none;border:none;color:#cdd7cf;cursor:pointer;font-family:'Poppins',sans-serif;font-size:.9rem;padding:0;transition:.2s}
+footer ul button:hover{color:var(--gold);padding-left:4px}
+.f-bottom{border-top:1px solid #35443a;padding-top:24px;text-align:center;font-size:.85rem;opacity:.7}
+
+/* ANIMATIONS */
+.reveal{opacity:0;transform:translateY(35px);transition:all .8s cubic-bezier(.2,.8,.2,1)}
+.reveal.show{opacity:1;transform:none}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+.floating{animation:float 5s ease-in-out infinite}
+@keyframes steam{0%{opacity:0;transform:translateY(0) scaleX(1)}50%{opacity:.6}100%{opacity:0;transform:translateY(-22px) scaleX(1.3)}}
+.steam{animation:steam 3s ease-in-out infinite}
+.steam.d{animation-delay:1s}
+.steam.d2{animation-delay:2s}
+
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+@media(max-width:900px){
+  .hero,.ing-wrap,.about-wrap,.c-wrap{grid-template-columns:1fr}
+  .hero h1{font-size:3rem}
+  .about-art,.ing-art{order:-1}
+  .f-grid{grid-template-columns:1fr 1fr}
+  .nav-links{
+    position:fixed;top:70px;right:0;flex-direction:column;align-items:flex-start;
+    background:#fff;width:70%;height:100vh;padding:30px;gap:14px;
+    box-shadow:-10px 0 30px rgba(0,0,0,.1);transform:translateX(100%);transition:.35s;
+  }
+  .nav-links.open{transform:translateX(0)}
+  .nav-links button{width:100%;text-align:left}
+  .hamburger{display:flex}
+}
+@media(max-width:540px){
+  section{padding:60px 6%}
+  .hero h1{font-size:2.4rem}
+  .sec-head h2{font-size:2.2rem}
+  .hero-stats{flex-wrap:wrap;gap:20px}
+  .f-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo" onclick="go('home')">
+    <svg viewBox="0 0 64 64" aria-hidden="true">
+      <defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2e7d4f"/><stop offset="1" stop-color="#1b5e37"/></linearGradient></defs>
+      <circle cx="32" cy="32" r="30" fill="url(#lg)"/>
+      <path d="M32 14c-8 8-12 16-6 24 2 3 6 5 6 10 0-5 4-7 6-10 6-8 2-16-6-24z" fill="#c8a24a"/>
+      <path d="M32 20v26" stroke="#fff" stroke-width="1.5" opacity=".7"/>
+    </svg>
+    <span>Aathish<b> Herbal</b></span>
+  </div>
+  <div class="nav-links" id="navLinks">
+    <button onclick="go('home')">Home</button>
+    <button onclick="go('products')">Products</button>
+    <button onclick="go('benefits')">Benefits</button>
+    <button onclick="go('ingredients')">Ingredients</button>
+    <button onclick="go('about')">About</button>
+    <button class="btn-primary" onclick="go('contact')">Order Now</button>
+  </div>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="menu"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="home">
+  <svg class="hero-blob" viewBox="0 0 200 200" aria-hidden="true"><path fill="#2e7d4f" d="M44,-66C56,-56,63,-42,69,-27C75,-12,79,5,74,19C68,33,53,44,38,54C22,64,6,73,-11,74C-28,75,-45,68,-57,56C-69,44,-75,27,-76,10C-77,-8,-73,-25,-63,-37C-54,-49,-38,-56,-23,-65C-7,-73,10,-83,25,-80C40,-77,32,-77,44,-66Z" transform="translate(100 100)"/></svg>
+  <div class="hero-text">
+    <span class="badge">🌿 100% Pure • Natural • Ayurvedic</span>
+    <h1>Nature's Touch of <em>Herbal</em> Healing</h1>
+    <p>Aathish Herbal Oil blends ancient Ayurvedic wisdom with pure plant extracts to nourish your skin, soothe your body and restore natural balance — crafted with care in small batches.</p>
+    <div class="hero-cta">
+      <button class="btn-primary" onclick="go('products')">Explore Products</button>
+      <button class="btn-ghost" onclick="go('benefits')">Learn Benefits</button>
+    </div>
+    <div class="hero-stats">
+      <div><b>100%</b><small>Herbal Pure</small></div>
+      <div><b>₹249</b><small>From / 100ml</small></div>
+      <div><b>5★</b><small>Loved by 10k+</small></div>
+    </div>
+  </div>
+  <div class="hero-art">
+    <svg viewBox="0 0 400 400" role="img" class="floating"><title>Herbal oil bottle with leaves</title>
+      <defs>
+        <radialGradient id="bg1" cx="50%" cy="40%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#e6f4ec"/></radialGradient>
+        <linearGradient id="bottle1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3f9b64"/><stop offset="1" stop-color="#1b5e37"/></linearGradient>
+        <linearGradient id="oil1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e3c97a"/><stop offset="1" stop-color="#c8a24a"/></linearGradient>
+      </defs>
+      <circle cx="200" cy="200" r="175" fill="url(#bg1)"/>
+      <ellipse cx="200" cy="350" rx="110" ry="20" fill="#2e7d4f" opacity=".12"/>
+      <!-- leaves -->
+      <path d="M90 150c-20 10-35 35-30 60 25 2 50-12 58-34-12-6-20-16-28-26z" fill="#2e7d4f"/>
+      <path d="M310 140c22 8 38 32 35 58-26 4-52-8-62-30 11-8 19-18 27-28z" fill="#3f9b64"/>
+      <path d="M78 185q25-4 50 12" stroke="#1b5e37" stroke-width="2" fill="none"/>
+      <!-- bottle -->
+      <rect x="168" y="95" width="64" height="30" rx="5" fill="url(#bottle1)"/>
+      <rect x="178" y="80" width="44" height="22" rx="4" fill="#c8a24a"/>
+      <path d="M160 125h80l12 40v150a16 16 0 0 1-16 16h-72a16 16 0 0 1-16-16V165z" fill="url(#bottle1)"/>
+      <rect x="150" y="165" width="100" height="150" rx="12" fill="url(#bottle1)"/>
+      <rect x="164" y="200" width="72" height="100" rx="8" fill="#fff" opacity=".92"/>
+      <rect x="164" y="255" width="72" height="45" rx="4" fill="url(#oil1)" opacity=".9"/>
+      <circle cx="200" cy="222" r="14" fill="#2e7d4f"/>
+      <path d="M200 214c-3 3-5 6-2 9 1 1 2 2 2 3 0-1 1-2 2-3 3-3 1-6-2-9z" fill="#c8a24a"/>
+      <text x="200" y="285" text-anchor="middle" font-family="Cormorant Garamond,serif" font-size="12" fill="#1b5e37" font-weight="700">AATHISH</text>
+      <!-- shine -->
+      <rect x="160" y="175" width="10" height="130" rx="5" fill="#fff" opacity=".25"/>
+    </svg>
+  </div>
+</header>
+
+<!-- PRODUCTS -->
+<section class="products" id="products">
+  <div class="sec-head reveal">
+    <span class="kicker">Our Collection</span>
+    <h2>Herbal Oil Variants</h2>
+    <p>Choose from our range of pure herbal oils, crafted for different needs and sizes — all made with natural Ayurvedic ingredients.</p>
+  </div>
+  <div class="grid" id="productGrid"></div>
+</section>
+
+<!-- BENEFITS -->
+<section class="benefits" id="benefits">
+  <div class="sec-head reveal">
+    <span class="kicker">Why Choose Us</span>
+    <h2>The Benefits of Aathish Oil</h2>
+    <p>Experience the time-tested goodness of herbs, carefully formulated to support your natural wellbeing.</p>
+  </div>
+  <div class="b-grid" id="benefitGrid"></div>
+</section>
+
+<!-- INGREDIENTS -->
+<section class="ingredients" id="ingredients">
+  <div class="sec-head reveal">
+    <span class="kicker">Pure & Natural</span>
+    <h2>Our Key Ingredients</h2>
+    <p>Every drop is a blend of nature's most trusted herbs, with no chemicals, parabens or artificial fragrances.</p>
+  </div>
+  <div class="ing-wrap">
+    <div class="ing-art reveal">
+      <svg viewBox="0 0 400 420" role="img"><title>Herbal ingredients</title>
+        <defs><radialGradient id="ibg" cx="50%" cy="45%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#e6f4ec"/></radialGradient></defs>
+        <circle cx="200" cy="200" r="180" fill="url(#ibg)"/>
+        <ellipse cx="200" cy="360" rx="130" ry="22" fill="#2e7d4f" opacity=".1"/>
+        <!-- mortar -->
+        <path d="M120 230h160l-16 70a30 30 0 0 1-28 22h-72a30 30 0 0 1-28-22z" fill="#8a9c8e"/>
+        <ellipse cx="200" cy="230" rx="80" ry="20" fill="#6f8275"/>
+        <ellipse cx="200" cy="228" rx="66" ry="14" fill="#3f9b64"/>
+        <rect x="235" y="150" width="14" height="90" rx="7" fill="#b5905a" transform="rotate(18 242 195)"/>
+        <ellipse cx="262" cy="155" rx="13" ry="10" fill="#8a9c8e" transform="rotate(18 262 155)"/>
+        <!-- leaves & herbs -->
+        <path d="M150 110c-18 6-30 26-26 46 20 0 40-12 46-30-7-6-13-11-20-16z" fill="#2e7d4f"/>
+        <path d="M250 100c20 4 34 24 32 46-22 2-42-10-50-28 6-7 12-13 18-18z" fill="#3f9b64"/>
+        <circle cx="175" cy="220" r="8" fill="#c8a24a"/>
+        <circle cx="210" cy="224" r="7" fill="#e3c97a"/>
+        <circle cx="230" cy="219" r="6" fill="#c8a24a"/>
+        <circle cx="190" cy="226" r="6" fill="#d4b35f"/>
+        <path d="M185 112v18M250 110v16" stroke="#1b5e37" stroke-width="2"/>
+      </svg>
+    </div>
+    <div class="ing-list reveal" id="ingList"></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-wrap">
+    <div class="about-art reveal">
+      <svg viewBox="0 0 400 400" role="img" class="floating"><title>Natural farming</title>
+        <defs>
+          <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e6f4ec"/><stop offset="1" stop-color="#fff"/></linearGradient>
+          <linearGradient id="hill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3f9b64"/><stop offset="1" stop-color="#1b5e37"/></linearGradient>
+        </defs>
+        <circle cx="200" cy="200" r="180" fill="url(#sky)"/>
+        <circle cx="300" cy="110" r="36" fill="#c8a24a" opacity=".55"/>
+        <path d="M20 280q90-60 180-20t180-10v130H20z" fill="url(#hill)"/>
+        <path d="M20 310q100-40 190 0t170-20v90H20z" fill="#2e7d4f"/>
+        <!-- plants -->
+        <g fill="#c8a24a">
+          <path d="M100 300c-6-20-2-40 8-50 4 16 2 34-8 50z"/>
+          <path d="M160 300c-6-20-2-40 8-50 4 16 2 34-8 50z"/>
+          <path d="M240 305c-6-20-2-40 8-50 4 16 2 34-8 50z"/>
+          <path d="M300 300c-6-20-2-40 8-50 4 16 2 34-8 50z"/>
+        </g>
+        <!-- bottle in center -->
+        <rect x="185" y="200" width="30" height="70" rx="8" fill="#1b5e37"/>
+        <rect x="190" y="188" width="20" height="16" rx="3" fill="#c8a24a"/>
+        <rect x="190" y="222" width="20" height="40" rx="4" fill="#e3c97a"/>
+      </svg>
+    </div>
+    <div class="about-text reveal">
+      <span class="kicker" style="color:var(--gold);font-weight:600;letter-spacing:2px;text-transform:uppercase;font-size:.8rem">Our Story</span>
+      <h2>Crafted From Nature, Made With Love</h2>
+      <p>Aathish Herbal Oil was born from a simple belief — that nature holds the purest remedies for everyday wellness. Rooted in traditional Ayurvedic practices passed down through generations, we blend hand-selected herbs with cold-pressed oils to deliver authentic, chemical-free care.</p>
+      <p>Each bottle is prepared in small batches to ensure purity and potency, so you receive only the finest herbal goodness nature has to offer.</p>
+      <div class="about-points">
+        <div><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#e6f4ec"/><path d="M7 12l3 3 7-7" stroke="#2e7d4f" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> No chemicals, parabens or additives</div>
+        <div><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#e6f4ec"/><path d="M7 12l3 3 7-7" stroke="#2e7d4f" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> 100% plant-based herbal extracts</div>
+        <div><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#e6f4ec"/><path d="M7 12l3 3 7-7" stroke="#2e7d4f" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Small-batch, lab-tested quality</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testi">
+  <div class="sec-head reveal">
+    <span class="kicker">Customer Love</span>
+    <h2>What People Say</h2>
+    <p>Thousands trust Aathish Herbal Oil as part of their daily natural care routine.</p>
+  </div>
+  <div class="t-grid" id="testiGrid"></div>
+</section>
+
+<!-- CONTACT / ORDER -->
+<section class="contact" id="contact">
+  <div class="sec-head reveal">
+    <span class="kicker">Place an Order</span>
+    <h2>Order Aathish Herbal Oil</h2>
+    <p>Fill in the form below and our team will reach out to confirm your order and delivery details.</p>
+  </div>
+  <div class="c-wrap">
+    <div class="c-info reveal">
+      <h3>Get In Touch</h3>
+      <p>We're here to help with orders, bulk enquiries and product guidance.</p>
+      <div class="row"><svg viewBox="0 0 24 24" fill="none"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>+91 98765 43210</span></div>
+      <div class="row"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="4" width="20" height="16" rx="3" stroke="#fff" stroke-width="2"/><path d="M3 6l9 7 9-7" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg><span>care@aathishherbal.com</span></div>
+      <div class="row"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-6.3-7-11a7 7 0 0 1 14 0c0 4.7-7 11-7 11z" stroke="#fff" stroke-width="2"/><circle cx="12" cy="10" r="2.5" stroke="#fff" stroke-width="2"/></svg><span>Herbal Estate, Coimbatore, Tamil Nadu</span></div>
+      <div class="row"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#fff" stroke-width="2"/><path d="M12 6v6l4 2" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg><span>Mon – Sat: 9:00 AM – 7:00 PM</span></div>
+    </div>
+    <form class="reveal" id="orderForm" onsubmit="return submitForm(event)">
+      <label>Full Name</label>
+      <input type="text" required placeholder="Your name">
+      <label>Phone Number</label>
+      <input type="tel" required placeholder="+91 ...">
+      <label>Email Address</label>
+      <input type="email" required placeholder="you@email.com">
+      <label>Select Product</label>
+      <select required id="prodSelect"></select>
+      <label>Quantity</label>
+      <input type="number" min="1" value="1" required>
+      <label>Delivery Address / Message</label>
+      <textarea placeholder="Your delivery address and any notes..."></textarea>
+      <button type="submit" class="btn-primary">Place Order Enquiry</button>
+      <div class="form-note" id="formNote">✅ Thank you! We'll contact you shortly to confirm your order.</div>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="f-grid">
+    <div class="f-brand">
+      <div class="logo" onclick="go('home')" style="cursor:pointer">
+        <svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="30" fill="#2e7d4f"/><path d="M32 14c-8 8-12 16-6 24 2 3 6 5 6 10 0-5 4-7 6-10 6-8 2-16-6-24z" fill="#c8a24a"/></svg>
+        <span>Aathish<b style="color:#c8a24a"> Herbal</b></span>
+      </div>
+      <p>Pure Ayurvedic herbal oils crafted from nature's finest ingredients for your everyday wellness.</p>
+    </div>
+    <div>
+      <h4>Quick Links</h4>
+      <ul>
+        <li><button onclick="go('home')">Home</button></li>
+        <li><button onclick="go('products')">Products</button></li>
+        <li><button onclick="go('benefits')">Benefits</button></li>
+        <li><button onclick="go('about')">About Us</button></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Products</h4>
+      <ul>
+        <li><button onclick="go('products')">Herbal Oil 100ml</button></li>
+        <li><button onclick="go('products')">Herbal Oil 200ml</button></li>
+        <li><button onclick="go('products')">Hair Care Oil</button></li>
+        <li><button onclick="go('products')">Pain Relief Oil</button></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Support</h4>
+      <ul>
+        <li><button onclick="go('contact')">Order Now</button></li>
+        <li><button onclick="go('contact')">Contact Us</button></li>
+        <li><button onclick="go('ingredients')">Ingredients</button></li>
+        <li><button onclick="go('contact')">Bulk Enquiry</button></li>
+      </ul>
+    </div>
+  </div>
+  <div class="f-bottom">© 2024 Aathish Herbal Oil. All rights reserved. Made with 🌿 for natural wellness.</div>
+</footer>
+
+<script>
+function go(id){document.getElementById(id).scrollIntoView({behavior:'smooth'});document.getElementById('navLinks').classList.remove('open');}
+function toggleMenu(){document.getElementById('navLinks').classList.toggle('open');}
+
+/* ---------- PRODUCTS ---------- */
+const products=[
+  {name:"Aathish Herbal Oil",size:"100 ml",price:249,old:299,tag:"Best Seller",rice:"#e3c97a",accent:"#2e7d4f",cap:"#c8a24a",desc:"Our signature all-purpose herbal oil for daily nourishment and glow."},
+  {name:"Aathish Herbal Oil",size:"200 ml",price:449,old:549,tag:"Value Pack",rice:"#d4b35f",accent:"#1b5e37",cap:"#b5905a",desc:"Double the goodness in a value-sized bottle for regular users."},
+  {name:"Herbal Hair Care Oil",size:"100 ml",price:279,old:329,tag:"",rice:"#c8a24a",accent:"#3f9b64",cap:"#2e7d4f",desc:"Strengthens roots, reduces hair fall and adds a natural shine."},
+  {name:"Pain Relief Herbal Oil",size:"100 ml",price:299,old:349,tag:"",rice:"#dcb66a",accent:"#2e7d4f",cap:"#1b5e37",desc:"Soothing blend for muscle and joint relief, warming and calming."},
+  {name:"Skin Glow Herbal Oil",size:"50 ml",price:199,old:0,tag:"New",rice:"#e8d08a",accent:"#3f9b64",cap:"#c8a24a",desc:"Lightweight facial oil for radiant, hydrated and even-toned skin."},
+  {name:"Herbal Oil Combo",size:"3 × 100 ml",price:649,old:847,tag:"Combo Deal",rice:"#d4b35f",accent:"#1b5e37",cap:"#c8a24a",desc:"A complete wellness trio — hair, skin and body care in one pack."}
+];
+
+function drawBottle(p,i){
+  return `<svg viewBox="0 0 220 220" role="img"><title>${p.name} ${p.size}</title>
+    <defs>
+      <linearGradient id="bo${i}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${p.accent}"/><stop offset="1" stop-color="#1b5e37"/></linearGradient>
+      <linearGradient id="oi${i}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${p.rice}"/><stop offset="1" stop-color="${p.cap}"/></linearGradient>
+    </defs>
+    <ellipse cx="110" cy="195" rx="58" ry="12" fill="#2e7d4f" opacity=".14"/>
+    <path d="M78 52c-12 4-20 16-18 28 13 1 26-7 31-18-5-4-9-7-13-10z" fill="${p.accent}"/>
+    <path d="M142 48c12 2 22 14 20 28-14 1-27-6-32-17 4-5 8-8 12-11z" fill="#3f9b64"/>
+    <rect x="94" y="48" width="32" height="20" rx="4" fill="${p.cap}"/>
+    <rect x="100" y="36" width="20" height="16" rx="3" fill="${p.cap}"/>
+    <path d="M86 68h48l8 26v78a14 14 0 0 1-14 14H92a14 14 0 0 1-14-14V94z" fill="url(#bo${i})"/>
+    <rect x="90" y="110" width="40" height="70" rx="6" fill="#fff" opacity=".92"/>
+    <rect x="90" y="150" width="40" height="30" rx="4" fill="url(#oi${i})" opacity=".9"/>
+    <circle cx="110" cy="128" r="10" fill="${p.accent}"/>
+    <path d="M110 122c-2 2-4 4-1 7 1 1 1 1 1 2 0-1 0-1 1-2 3-3 1-5-1-7z" fill="${p.cap}"/>
+    <text x="110" y="172" text-anchor="middle" font-family="Cormorant Garamond,serif" font-size="8" fill="#1b5e37" font-weight="700">AATHISH</text>
+    <rect x="86" y="82" width="7" height="90" rx="3" fill="#fff" opacity=".22"/>
+  </svg>`;
+}
+
+const pg=document.getElementById('productGrid');
+const ps=document.getElementById('prodSelect');
+products.forEach((p,i)=>{
+  const card=document.createElement('div');
+  card.className='card reveal';
+  card.innerHTML=`
+    ${p.tag?`<span class="tag">${p.tag}</span>`:''}
+    <div class="card-img">${drawBottle(p,i)}</div>
+    <div class="card-body">
+      <span class="size">${p.size}</span>
+      <h3>${p.name}</h3>
+      <p>${p.desc}</p>
+      <div class="card-foot">
+        <div class="price">₹${p.price} ${p.old?`<span style="text-decoration:line-through;">₹${p.old}</span>`:''}</div>
+        <button onclick="orderNow('${p.name} - ${p.size}')">Order</button>
+      </div>
+    </div>`;
+  pg.appendChild(card);
+  const opt=document.createElement('option');
+  opt.value=`${p.name} - ${p.size} (₹${p.price})`;
+  opt.textContent=`${p.name} - ${p.size} - ₹${p.price}`;
+  ps.appendChild(opt);
+});
+
+function orderNow(name){
+  go('contact');
+  setTimeout(()=>{
+    const s=document.getElementById('prodSelect');
+    for(let o of s.options){if(o.value.startsWith(name)){s.value=o.value;break;}}
+  },500);
+}
+
+/* ---------- BENEFITS ---------- */
+const benefits=[
+  {t:"Nourishes Skin",d:"Deeply hydrates and revitalises skin for a soft, healthy natural glow.",
+   svg:`<svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="12" stroke="#2e7d4f" stroke-width="3"/><path d="M24 10v-4M24 42v-4M10 24H6M42 24h-4M14 14l-3-3M37 37l-3-3M34 14l3-3M11 37l3-3" stroke="#c8a24a" stroke-width="3" stroke-linecap="round"/></svg>`},
+  {t:"Relieves Stress",d:"A calming herbal aroma that relaxes the body and soothes the mind.",
+   svg:`<svg viewBox="0 0 48 48" fill="none"><path d="M24 40c-8-6-14-12-14-20a7 7 0 0 1 14-3 7 7 0 0 1 14 3c0 8-6 14-14 20z" stroke="#2e7d4f" stroke-width="3" stroke-linejoin="round"/></svg>`},
+  {t:"Strengthens Hair",d:"Fortifies roots, reduces hair fall and promotes natural growth.",
+   svg:`<svg viewBox="0 0 48 48" fill="none"><path d="M24 6c-8 8-12 16-6 26 2 3 6 5 6 10 0-5 4-7 6-10 6-10 2-18-6-26z" stroke="#2e7d4f" stroke-width="3" stroke-linejoin="round"/><path d="M24 14v22" stroke="#c8a24a" stroke-width="3" stroke-linecap="round"/></svg>`},
+  {t:"100% Natural",d:"Made purely from herbs with no chemicals, parabens or additives.",
+   svg:`<svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="18" stroke="#2e7d4f" stroke-width="3"/><path d="M16 24l6 6 11-12" stroke="#c8a24a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>`},
+  {t:"Eases Pain",d:"Warming blend that soothes aching muscles and tired joints.",
+   svg:`<svg viewBox="0 0 48 48" fill="none"><path d="M10 28l6-16 6 24 6-30 6 22h4" stroke="#2e7d4f" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>`},
+  {t:"Ayurvedic Heritage",d:"Rooted in ancient wellness traditions passed through generations.",
+   svg:`<svg viewBox="0 0 48 48" fill="none"><path d="M24 6l4 10 10 1-8 7 2 11-10-6-10 6 2-11-8-7 10-1z" stroke="#c8a24a" stroke-width="3" stroke-linejoin="round"/></svg>`}
+];
+const bg=document.getElementById('benefitGrid');
+benefits.forEach(b=>{
+  const d=document.createElement('div');
+  d.className='b-card reveal';
+  d.innerHTML=`<div class="b-icon">${b.svg}</div><h3>${b.t}</h3><p>${b.d}</p>`;
+  bg.appendChild(d);
+});
+
+/* ---------- INGREDIENTS ---------- */
+const ings=[
+  {n:"Neem Extract",d:"Antibacterial & purifying, keeps skin clear and healthy."},
+  {n:"Coconut Oil",d:"Cold-pressed base that deeply moisturises and softens."},
+  {n:"Tulsi (Holy Basil)",d:"Soothing herb known for its healing and calming properties."},
+  {n:"Aloe Vera",d:"Cooling and hydrating, perfect for sensitive skin."},
+  {n:"Sesame Oil",d:"Traditional Ayurvedic oil rich in nourishing nutrients."}
+];
+const leafSvg=`<svg class="leaf" viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M24 6c-8 8-12 16-6 26 2 3 6 5 6 10 0-5 4-7 6-10 6-10 2-18-6-26z" fill="#2e7d4f"/><path d="M24 14v24" stroke="#c8a24a" stroke-width="2"/></svg>`;
+const il=document.getElementById('ingList');
+ings.forEach(it=>{
+  const d=document.createElement('div');
+  d.className='ing-item';
+  d.innerHTML=`${leafSvg}<div><h4>${it.n}</h4><p>${it.d}</p></div>`;
+  il.appendChild(d);
+});
+
+/* ---------- TESTIMONIALS ---------- */
+const testi=[
+  {n:"Priya S.",r:"Verified Buyer",c:"#e6f4ec",t:"The 100ml herbal oil transformed my skin! It feels soft and glowing. Totally worth ₹249."},
+  {n:"Rajesh K.",r:"Regular Customer",c:"#f8edda",t:"Been using the pain relief oil for my knee. It genuinely soothes and smells wonderful."},
+  {n:"Anitha M.",r:"Verified Buyer",c:"#e8eef4",t:"Finally a hair oil that's 100% natural. My hair fall has reduced noticeably in a month."}
+];
+function avatar(c,i){
+  return `<svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="24" fill="${c}"/><circle cx="24" cy="19" r="9" fill="#2e7d4f"/><path d="M8 44c2-10 10-14 16-14s14 4 16 14z" fill="#2e7d4f"/></svg>`;
+}
+const tg=document.getElementById('testiGrid');
+testi.forEach((t,i)=>{
+  const d=document.createElement('div');
+  d.className='t-card reveal';
+  d.innerHTML=`<div class="stars">★★★★★</div><p>"${t.t}"</p>
+    <div class="t-person">${avatar(t.c,i)}<div><b>${t.n}</b><small>${t.r}</small></div></div>`;
+  tg.appendChild(d);
+});
+
+/* ---------- FORM ---------- */
+function submitForm(e){
+  e.preventDefault();
+  document.getElementById('formNote').style.display='block';
+  e.target.reset();
+  setTimeout(()=>{document.getElementById('formNote').style.display='none';},5000);
+  return false;
+}
+
+/* ---------- REVEAL ---------- */
+const io=new IntersectionObserver((es)=>{
+  es.forEach(en=>{if(en.isIntersecting){en.target.classList.add('show');io.unobserve(en.target);}});
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+<script>(function(){try{fetch('https://zws-backend-4.onrender.com/api/analytics/track/bd116672-2979-496a-93b5-2de5492de128',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({referrer:document.referrer})}).catch(function(){});}catch(e){}})();</script>
+</body>
+</html>
